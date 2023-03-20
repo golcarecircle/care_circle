@@ -11,6 +11,10 @@ jobs:
     steps:
       - name: Get the latest code
         uses: actions/checkout@v3
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
@@ -27,6 +31,10 @@ jobs:
     steps:
       - name: Get the latest code
         uses: actions/checkout@v2
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18.x'
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
@@ -61,3 +69,4 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
           package: .
+          slot-name: 'production'
