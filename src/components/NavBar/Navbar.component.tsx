@@ -14,16 +14,17 @@ function NavComponent() {
                         <Link href='/about'>About</Link>
                     </li>
                     <li>
-                        <Link href='/contact'>Contact Us</Link>
+                        <Link href='/partners'>Health Habits</Link>
                     </li>
                     <li>
                         <Link href='/partners'>Partners</Link>
                     </li>
                     <li>
-                        <Link href='/login'>Login/SignUp</Link>
+                        <Link href='/contact'>Contact Us</Link>
                     </li>
                 </ul>
                 <button className={navStyles.btn}>Book Appointment</button>
+                <button className={navStyles.btn}>Login/SignUp</button>
             </nav>
         </header>
     )

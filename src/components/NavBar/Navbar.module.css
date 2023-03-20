@@ -1,11 +1,11 @@
 .header{
-    background-color: #000;
+    /* background-color: #000; */
     height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    color: #fff;
+    color: #000;
 }
 .nav{
     display: flex;
@@ -14,8 +14,8 @@
     width: 65%;
 }
 .nav .btn{
-    background-color: #fff;
-    color: #000;
+    background-color: blue;
+    color: #fff;
     padding: 7px 20px;
     border-radius: 25px;
     border: none;
