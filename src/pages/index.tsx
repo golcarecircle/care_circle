@@ -1,4 +1,5 @@
 import Head from "next/head";
+import FooterComponent from "@/components/Footer/Footer.component";
 import HomePageInfoComponent from "@/components/HomePageInfo/HomePageInfo.component";
 export default function Home() {
     return(
@@ -7,6 +8,7 @@ export default function Home() {
                 <title>Home</title>
             </Head>
             <HomePageInfoComponent/>
+            <FooterComponent/>
         </>
     )
 }
