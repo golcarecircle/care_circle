@@ -11,9 +11,9 @@ function FooterComponent() {
                 <p>
                     CareCircle is a cutting-edge platform that Involves the community with their care providers.
                 </p>
-                <FaFacebook style={{color: 'blue', fontSize: '20px', margin: '10px'}}/>
-                <FaTwitter style={{color: 'blue', fontSize: '20px', margin: '10px'}}/>
-                <FaInstagram style={{color: 'blue',  fontSize: '20px', margin: '10px'}}/>
+                <FaFacebook style={{color: 'white', fontSize: '20px', margin: '10px'}}/>
+                <FaTwitter style={{color: 'white', fontSize: '20px', margin: '10px'}}/>
+                <FaInstagram style={{color: 'white',  fontSize: '20px', margin: '10px'}}/>
             </div>
             <div className={styles["footer-section"]}>
                 <h3>Menu</h3>
@@ -34,12 +34,9 @@ function FooterComponent() {
                 </ul>
             </div>
             <div className={styles["footer-section"]}>
-                <h3>Further Information</h3>
-                <ul>
-                    <li>Terms and Conditions</li>
-                    <li>Privacy Policy</li>
-                    <li>Cookie Policy</li>
-                </ul>
+                <h3>Subscribe to Newsletter</h3>
+                <input type="text" placeholder='Enter your Email' />
+                <button className={styles.btn}>Subscribe</button>
             </div>
         </footer>
     );

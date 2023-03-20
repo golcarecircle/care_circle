@@ -11,11 +11,8 @@ function HomePageInfoComponent() {
                     <p>
                         CareCircle is a cutting-edge platform that Involves the community with their care providers.
                         We are a community of care providers and patients who are dedicated to providing the best care possible.
-                        <ul style={{padding: '-1vw'}}>
-                            <li>Book an appointment with a care provider</li>
-                            <li>Healthcare Reimagined</li>
-                        </ul>
                     </p>
+                    
                     <button className={styles.btn}>Explore</button>
                     <button className={styles.btn2}>Read More</button>
                 </div>

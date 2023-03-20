@@ -1,10 +1,38 @@
 .footer{
-    /* background-color: #ccc; */
+    color: #ccc;
     border-top: 1px solid #ccc;
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    background-color: blue;
 }
 .footer-section{
     width: 50%;
+    margin: 10px;
+}
+.footer-section h3{
+    border-bottom: 1px solid white;
+}
+.footer-section ul{
+    list-style: none;
+}
+.footer-section input{
+    outline: none;
+    border: none;
+    font-size: .8rem;
+    background-color: #ccc;
+    padding: 7px 20px;
+    border-radius: 25px;
+    color: black;
+    text-align: center;
+}
+.btn{
+    background-color: white;
+    color: blue;
+    padding: 7px 20px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 8px;
 }
