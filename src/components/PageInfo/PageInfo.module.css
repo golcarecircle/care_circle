@@ -1,0 +1,24 @@
+.pageInfo{
+    width: 100%;
+    text-align: center;
+    height: 30vh;
+    padding: 4vw 0;
+    background-color: #ccc;
+    color: black;
+}
+.pageInfo h2{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bold;
+}
+.pageInfo p{
+    font-size: 1rem;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: .5px;
+}
+.pageInfo a{
+    text-decoration: none;
+}

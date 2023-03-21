@@ -1,5 +1,6 @@
 import Head from "next/head";
 import ItemListComponent from "@/components/ItemsList/ItemList.component";
+import PageInfoComponent from "@/components/PageInfo/PageInfo.component";
 type Section={
     Title: string;
     Description? :string;
@@ -24,7 +25,7 @@ export default function About({allData}: InputProps){
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <h1>This is the About Page</h1>
+            <PageInfoComponent path="about" title="About" />
             <p>Care Circle aims to give health tips and ideas to everyone in this community</p>
             <ItemListComponent data={allData}/>
         </>
