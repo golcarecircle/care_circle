@@ -1,6 +1,10 @@
 import Head from "next/head";
 import ItemListComponent from "@/components/ItemsList/ItemList.component";
 import PageInfoComponent from "@/components/PageInfo/PageInfo.component";
+import { selectDataState, setDataState } from "@/redux/tipsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { wrapper } from "@/redux/store";
+
 type Section={
     Title: string;
     Description? :string;
@@ -16,7 +20,9 @@ type ResponseData = {
 type InputProps = {
     allData: ResponseData[]
 }
+
 export default function About({allData}: InputProps){
+    const dataState = useSelector(selectDataState);
     return(
         <>
             <Head>
@@ -27,11 +33,12 @@ export default function About({allData}: InputProps){
             </Head>
             <PageInfoComponent path="about" title="About" />
             <p>Care Circle aims to give health tips and ideas to everyone in this community</p>
-            <ItemListComponent data={allData}/>
+            <ItemListComponent data={dataState}/>
         </>
     )
 }
 export async function getSortedData() {
+    
     let ResponseRetData = {}
     const response = await fetch(`https://health.gov/myhealthfinder/api/v3/topicsearch.json`);
     const data =await response.json();
@@ -47,11 +54,16 @@ export async function getSortedData() {
     })
     return ResponseRetData;
 }
-export async function getStaticProps() {
-    const allData = await getSortedData();
-    return{
-        props:{
-            allData
+export const getStaticProps = wrapper.getStaticProps(
+    (store)=>
+    async({params})=>{
+        const allData = await getSortedData();
+        await store.dispatch(setDataState(allData));
+        console.log("State on Server is: ",store.getState);
+        return{
+            props:{
+                allData
+            }
         }
     }
-}
+)
