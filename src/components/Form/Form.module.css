@@ -1,0 +1,42 @@
+.form_container{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.form{
+    margin: 20px;
+}
+.form_element label{
+    display: block;
+}
+.form_element input{
+    padding: 10px;
+    width: 250px;
+    background: none;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 20px;
+    color: black;
+}
+.form_container input[type='submit']{
+    padding: 10px;
+    margin: 10px;
+    background: none;
+    border: 1px solid #ccc;
+    outline: none;
+    color: black;
+    cursor: pointer;
+}
+.failure_message{
+    padding: 10px;
+    background-color: red;
+    /* width: 100px; */
+    color: white;
+}
+.success_message{
+    padding: 10px;
+    background-color: rgb(9, 202, 9);
+    color: white;
+}

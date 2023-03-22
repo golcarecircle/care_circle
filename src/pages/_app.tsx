@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { SessionProvider } from 'next-auth/react';
 import Layoutcomponent from '@/components/layout/Layout.component';
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
@@ -9,12 +10,15 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 };
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
+
 };
 function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
-    <Layoutcomponent>
-      <Component {...pageProps} />
-    </Layoutcomponent>
+    <SessionProvider session={pageProps.session}>
+      <Layoutcomponent>
+        <Component {...pageProps} />
+      </Layoutcomponent>
+    </SessionProvider>
   )
 }
 export default wrapper.withRedux(App);
