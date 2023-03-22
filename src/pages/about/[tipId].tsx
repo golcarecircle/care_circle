@@ -13,4 +13,15 @@ export async function getStaticPaths() {
     //filter the room Ids from initial state in redux
     
 }
+export const getStaticProps = wrapper.getStaticProps((
+    (store)=>
+    async()=>{
+        return {
+            props:{
+                
+            }
+        }
+    }
+))
+    
 export default TipID;

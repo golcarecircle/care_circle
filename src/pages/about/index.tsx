@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 import ItemListComponent from "@/components/ItemsList/ItemList.component";
 import PageInfoComponent from "@/components/PageInfo/PageInfo.component";
 import { selectDataState, setDataState } from "@/redux/tipsSlice";
