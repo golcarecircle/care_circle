@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import navStyles from './Navbar.module.css'
+import Image from "next/image";
 function NavComponent() {
     return(
         <header className={navStyles.header}>
@@ -23,8 +24,13 @@ function NavComponent() {
                         <Link href='/contact'>Contact Us</Link>
                     </li>
                 </ul>
-                <button className={navStyles.btn}>Book Appointment</button>
-                <button className={navStyles.btn}>Login/SignUp</button>
+                <div style={{display: 'flex', alignItems:'center'}}>
+                    <button className={navStyles.btn}>Book Appointment</button>
+                    <button className={navStyles.btn}>
+                        <Link href='/auth'>Login/Register</Link>
+                    </button>
+                    <Image src='/images/cart.webp' alt="image" style={{borderRadius:'50%', cursor:'pointer', margin:'0 10px'}} height={40} width={40}/>
+                </div>
             </nav>
         </header>
     )
