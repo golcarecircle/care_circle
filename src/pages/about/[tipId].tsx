@@ -11,14 +11,17 @@ function TipID() {
 }
 export async function getStaticPaths() {
     //filter the room Ids from initial state in redux
-    
+    return{
+        fallback:false,
+        paths: []
+    }
 }
 export const getStaticProps = wrapper.getStaticProps((
     (store)=>
     async()=>{
         return {
             props:{
-                
+
             }
         }
     }
