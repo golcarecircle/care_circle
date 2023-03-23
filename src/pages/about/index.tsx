@@ -11,7 +11,7 @@ type Section={
     Description? :string;
     Content: string
 }
-type ResponseData = {
+export type ResponseData = {
     readonly Id: string
     Title: string;
     ImageUrl: string;
