@@ -1,7 +1,8 @@
 import Head from "next/head";
 import FooterComponent from "@/components/Footer/Footer.component";
 import HomePageInfoComponent from "@/components/HomePageInfo/HomePageInfo.component";
-export default function Home() {
+
+function Home() {
     return(
         <>
             <Head>
@@ -15,3 +16,5 @@ export default function Home() {
         </>
     )
 }
+
+export default Home

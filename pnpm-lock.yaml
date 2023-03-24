@@ -6,6 +6,7 @@ specifiers:
   '@types/node': 18.15.3
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@types/redux-persist': ^4.3.1
   eslint: 8.36.0
   eslint-config-next: 13.2.4
   mongodb: ^5.1.0
@@ -16,6 +17,7 @@ specifiers:
   react-dom: 18.2.0
   react-icons: ^4.8.0
   react-redux: ^8.0.5
+  redux-persist: ^6.0.0
   typescript: 5.0.2
 
 dependencies:
@@ -34,7 +36,11 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
   react-redux: 8.0.5_3xleytyzprlgycb2ded54tx72i
+  redux-persist: 6.0.0_react@18.2.0
   typescript: 5.0.2
+
+devDependencies:
+  '@types/redux-persist': 4.3.1_react@18.2.0
 
 packages:
 
@@ -337,6 +343,16 @@ packages:
       '@types/scheduler': 0.16.2
       csstype: 3.1.1
     dev: false
+
+  /@types/redux-persist/4.3.1_react@18.2.0:
+    resolution: {integrity: sha512-YkMnMUk+4//wPtiSTMfsxST/F9Gh9sPWX0LVxHuOidGjojHtMdpep2cYvQgfiDMnj34orXyZI+QJCQMZDlafKA==}
+    deprecated: This is a stub types definition for redux-persist (https://github.com/rt2zz/redux-persist). redux-persist provides its own type definitions, so you don't need @types/redux-persist installed!
+    dependencies:
+      redux-persist: 6.0.0_react@18.2.0
+    transitivePeerDependencies:
+      - react
+      - redux
+    dev: true
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
@@ -1548,7 +1564,6 @@ packages:
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-    dev: false
 
   /js-yaml/4.1.0:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
@@ -1614,7 +1629,6 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
-    dev: false
 
   /lru-cache/6.0.0:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
@@ -2064,7 +2078,17 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
+
+  /redux-persist/6.0.0_react@18.2.0:
+    resolution: {integrity: sha512-71LLMbUq2r02ng2We9S215LtPu3fY0KgaGE0k8WRgl6RkqxtGfl7HUozz1Dftwsb0D/5mZ8dwAaPbtnzfvbEwQ==}
+    peerDependencies:
+      react: '>=16'
+      redux: '>4.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
 
   /redux-thunk/2.4.2_redux@4.2.1:
     resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}
