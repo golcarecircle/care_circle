@@ -45,7 +45,6 @@ export const HealthTipsProvider = (({children}:Props)=>{
         }
         getSortedData()
     },[])
-    const value = [...healthTips]
     return(
         <HealthTipsContext.Provider value={{healthTips}}>
             {children}

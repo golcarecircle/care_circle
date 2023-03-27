@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { HealthTipsContext } from '@/context/healthTips.context';
 import styles from './ItemList.module.css';
 import Image from 'next/image';
 import Link from 'next/link'
@@ -14,14 +15,13 @@ type ResponseData = {
     ImageAlt: string;
     Sections: Section[]
 }
-type ItemsProps={
-    data: ResponseData[]
-}
-function ItemListComponent({data}:ItemsProps) {
+function ItemListComponent() {
+    const { healthTips } = useContext(HealthTipsContext);
+    console.log(healthTips);
     return (
         <section className={styles['container']}>
             {
-                data.map((it)=>(
+                healthTips.map((it)=>(
                     <div key={it.Id} className={styles.item}>
                         <Image src={it.ImageUrl} alt={it.ImageAlt} width={200} height={200} />
                         <h3>{it.Title}</h3>

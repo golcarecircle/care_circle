@@ -16,11 +16,9 @@ type AppPropsWithLayout = AppProps & {
 function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <SessionProvider session={pageProps.session}>
-      <HealthTipsProvider>
           <Layoutcomponent>
             <Component {...pageProps} />
           </Layoutcomponent>
-      </HealthTipsProvider>
     </SessionProvider>
   )
 }
