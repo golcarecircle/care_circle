@@ -11,7 +11,7 @@
 .form_element label{
     display: block;
 }
-.form_element input{
+.form_element input, .form_element select{
     padding: 10px;
     width: 250px;
     background: none;

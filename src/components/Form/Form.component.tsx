@@ -80,7 +80,7 @@ function FormComponent() {
             [next.name]: next.value
         }
     }
-    const [state,dispatch] = useReducer(signInReducer,formVals)
+    const [state,dispatch] = useReducer(signInReducergit,formVals)
     function handleOnChange(e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>){
         if (e.target instanceof HTMLSelectElement) {
             dispatch({name: e.target.name,value: e.target.value})

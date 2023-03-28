@@ -6,7 +6,8 @@ import { useSession } from "next-auth/react";
 import { signOut, signIn } from "next-auth/react";
 function NavComponent() {
     const {data: session} = useSession();
-
+    console.log(session);
+    
     return(
         <header className={navStyles.header}>
             <h1>CareCircle</h1>

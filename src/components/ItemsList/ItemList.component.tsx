@@ -17,7 +17,6 @@ type ResponseData = {
 }
 function ItemListComponent() {
     const { healthTips } = useContext(HealthTipsContext);
-    console.log(healthTips);
     return (
         <section className={styles['container']}>
             {

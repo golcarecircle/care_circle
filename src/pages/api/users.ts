@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getAllUser } from './controllers/user.controller'
-type IUser = {
-    _id: string;
+export type IUser = {
+    _id?: string;
     name: string;
     userType: string;
     sex: string;
@@ -16,7 +16,7 @@ type IUser = {
     updatedAt: Date;
 
 }
-
+export type User = Omit<IUser,  | 'createdAt' | 'updatedAt' >;
 
 export default async function handler(
   req: NextApiRequest,
