@@ -1,19 +1,43 @@
-import NextAuth from 'next-auth';
+import NextAuth, {NextAuthOptions, Session} from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 import { getUserById } from '../controllers/user.controller';
 import { IUser } from '../users';
 import bcrypt from 'bcryptjs';
+import { NextApiHandler } from 'next';
+import { JWT } from 'next-auth/jwt';
 interface Credentials{
   email: string;
   password: string;
 }
-export default NextAuth({
+export const options: NextAuthOptions = {
     session:{
         strategy: 'jwt',
     },
+    callbacks: {
+        async jwt({token, user}) {
+            
+            if (user) {
+                token.user = user;
+            }
+            return token;
+        },
+        async session({ session,token }){
+            if (token) {
+                session.user = token.user
+            }
+            return Promise.resolve(session);
+        },
+    },
     providers: [
+        GoogleProvider({
+            id: 'google',
+            clientId: '',
+            clientSecret: ''
+        }),
         Credentials({
-            name: 'Credentials',
+            id: 'credentials',
+            name: 'credentials',
             credentials:{
                 email:{label:'email', type:'text',placeholder:''},
                 password:{label:'password',type:'password'}
@@ -28,53 +52,11 @@ export default NextAuth({
                 if (!isMatch) {
                     throw new Error("Password doesnt Match");
                 }
-                return {
-                    email: user.email, 
-                    name: user.name,
-                    id: user._id,
-                    phone: user.phone,
-                }
+                return user;
             },
+            
         })
-  ],
-});
-
-// const options = {
-//     // adapter: MongoDBAdapter(clientPromise),
-//     providers: [
-//         CredentialsProvider({
-//             async authorize(credentials: Data){
-//                 const users = (await clientPromise).db().collection('users');
-//                 const res = await users.findOne({email:credentials.email})
-//                 if (!res) {
-//                     (await clientPromise).close();
-//                     throw new Error("No User Found");
-//                 }
-//                 if (credentials.password!==res.password) {
-//                     (await clientPromise).close();
-//                     throw new Error("Password doesnt Match");
-                    
-//                 }
-//                 (await clientPromise).close();
-//                 return {email: res.email}
-//             }
-//         }),
-        
-//     ],
-//     callbacks: {
-//         async jwt(token: string, user, account) {
-//           if (user) {
-//             token.user = user;
-//           }
-    
-//           return token;
-//         },
-//       },
-    
-//       session: {
-//         jwt: true,
-//         maxAge: 30 * 24 * 60 * 60,
-//         updateAge: 24 * 60 * 60,
-//       },
-// }
-// export default NextAuth(options)
+    ],
+}
+const Handler: NextApiHandler = (req, res) => NextAuth(req, res, options);
+export default Handler;
