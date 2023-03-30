@@ -3,11 +3,9 @@ import React from "react";
 import navStyles from './Navbar.module.css'
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { signOut, signIn } from "next-auth/react";
+import { signOut } from "next-auth/react";
 function NavComponent() {
     const {data: session} = useSession();
-    console.log(session);
-    
     return(
         <header className={navStyles.header}>
             <h1>CareCircle</h1>
@@ -40,7 +38,7 @@ function NavComponent() {
                                 <Image src='/images/cart.webp' alt="image" style={{borderRadius:'50%', cursor:'pointer', margin:'0 10px'}} height={40} width={40}/>
                                 <div>
                                     <h4>{session.user?.name}</h4>
-                                    <p>+254741954426</p>
+                                    <p>{session.user?.id}</p>
                                 </div>
                             </div>
                         )
