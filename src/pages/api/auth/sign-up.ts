@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import clientPromise from './clientPromise';
+// import clientPromise from './clientPromise';
 import { createUser } from '../controllers/user.controller';
 type Data = {
   message: string
@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         const data = await createUser({email, password, ...otherProps})
         if (!data) {
             res.status(422).json({ message: 'User already exists' });
-            (await clientPromise).close()
+            // (await clientPromise).close()
             return;
         }
         // sign in the user

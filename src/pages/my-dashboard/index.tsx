@@ -1,16 +1,21 @@
+import { GetServerSidePropsContext } from "next";
+import { getServerSession } from "next-auth/next";
+import { getSession} from "next-auth/react";
+import { options } from "../api/auth/[...nextauth]"
 import Head from "next/head";
 import Image from "next/image";
 import {AiOutlineClockCircle} from 'react-icons/ai'
-function Home() {
+function UserDashboard({user}:any) {
+    console.log(user);
     return(
         <>
             <Head>
-                <title>Me - CareCircle</title>
+                <title> {user?.name} - CareCircle</title>
                 <meta name="description" content="Care Circle Home Page" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <h1>Welcome Oliver</h1>
+            <h1>Welcome {user?.name}</h1>
             <section style={{display: 'flex', width: '100%', justifyContent: 'center'}}>
                 <div style={{margin: '10px 20px'}}>
                     <h1>Current Medication (3) </h1>
@@ -100,5 +105,23 @@ function Home() {
         </>
     )
 }
-
-export default Home
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    console.log(context.req)
+    const session = await getServerSession(context.req,context.res,options);
+    //get the id of logged in user from the session from the database
+    console.log('Session in my dashboard is: ',session);
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/auth',
+                permanent: false
+            }
+        }
+    }
+    return {
+        props: {
+            user: session?.user
+        }
+    }
+}
+export default UserDashboard;

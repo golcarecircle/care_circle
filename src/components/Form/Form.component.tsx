@@ -1,7 +1,9 @@
 import React, { SyntheticEvent, useReducer } from 'react';
 import styles from './Form.module.css';
 import { signIn } from 'next-auth/react';
+import {useRouter} from 'next/router';
 function FormComponent() {
+    const router = useRouter();
     const handleFormSubmit = async (e: SyntheticEvent)=>{
         e.preventDefault();
         const { password, ...others } = state;
@@ -37,6 +39,8 @@ function FormComponent() {
                 password: state.password
             })
             console.log(status);
+            //redirect to home page
+            router.push('/')
         }
         
         dispatch({name:'response',value:{code:res.status,message:data.message}})
@@ -80,7 +84,7 @@ function FormComponent() {
             [next.name]: next.value
         }
     }
-    const [state,dispatch] = useReducer(signInReducergit,formVals)
+    const [state,dispatch] = useReducer(signInReducer,formVals)
     function handleOnChange(e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLSelectElement>){
         if (e.target instanceof HTMLSelectElement) {
             dispatch({name: e.target.name,value: e.target.value})
@@ -97,6 +101,7 @@ function FormComponent() {
             password: state.password
         })
         console.log(status)
+        router.push('/')
     }
     return (
         <>
@@ -114,7 +119,7 @@ function FormComponent() {
                         <p onClick={()=>dispatch({name:'passwordType', value: !state.passwordType})}  style={{cursor:'pointer',display:'inline-block'}}>show</p>
                     </div>
                     <input onClick={handleSignIn} type="submit" value="SIGN IN" />
-                    <input style={{color: 'white', background:'blue'}} required type="submit" value="SIGN IN WITH GOOGLE" />
+                    <input onClick={()=>signIn('google')} style={{color: 'white', background:'blue'}} required type="submit" value="SIGN IN WITH GOOGLE" />
                 </form>
                 <form className={styles.form} onSubmit={handleFormSubmit}>
                     <p style={{fontWeight: 'bold', fontSize: '20px'}}>Create an Account Today!!</p>
