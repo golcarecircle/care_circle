@@ -52,7 +52,13 @@ export const options: NextAuthOptions = {
                 if (!isMatch) {
                     throw new Error("Password doesnt Match");
                 }
-                return user;
+                return {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                    phone: user.phone,
+                    isAdmin: user.userType==='PATIENT'?true:false,
+                };
             },
             
         })
