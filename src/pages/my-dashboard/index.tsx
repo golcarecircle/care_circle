@@ -1,7 +1,10 @@
+import { GetServerSidePropsContext } from "next";
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import {AiOutlineClockCircle} from 'react-icons/ai'
-function Home() {
+function UserDashboard({session}:any) {
+    console.log(session);
     return(
         <>
             <Head>
@@ -100,5 +103,20 @@ function Home() {
         </>
     )
 }
-
-export default Home
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const session = await getSession({req: context.req});
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/auth',
+                permanent: false
+            }
+        }
+    }
+    return {
+        props: {
+            session
+        }
+    }
+}
+export default UserDashboard;
