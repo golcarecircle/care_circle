@@ -39,7 +39,7 @@ function NavComponent() {
                             <div style={{border:'1px solid #ccc', display:'flex', padding: '5px', borderRadius: '30px'}}>
                                 <Image src='/images/cart.webp' alt="image" style={{borderRadius:'50%', cursor:'pointer', margin:'0 10px'}} height={40} width={40}/>
                                 <div>
-                                    <h4>Oliver Kipkemei</h4>
+                                    <h4>{session.user?.name}</h4>
                                     <p>+254741954426</p>
                                 </div>
                             </div>
