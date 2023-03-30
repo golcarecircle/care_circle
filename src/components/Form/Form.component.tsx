@@ -1,7 +1,9 @@
 import React, { SyntheticEvent, useReducer } from 'react';
 import styles from './Form.module.css';
 import { signIn } from 'next-auth/react';
+import {useRouter} from 'next/router';
 function FormComponent() {
+    const router = useRouter();
     const handleFormSubmit = async (e: SyntheticEvent)=>{
         e.preventDefault();
         const { password, ...others } = state;
@@ -37,6 +39,8 @@ function FormComponent() {
                 password: state.password
             })
             console.log(status);
+            //redirect to home page
+            router.push('/')
         }
         
         dispatch({name:'response',value:{code:res.status,message:data.message}})
