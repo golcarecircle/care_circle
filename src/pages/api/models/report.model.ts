@@ -1,5 +1,5 @@
-import mongoose,{Types, Schema} from "mongoose";
-interface IReport extends mongoose.Document {
+import mongoose,{Types, Schema, Model} from "mongoose";
+export interface IReport extends mongoose.Document {
     _id: string;
     patientId: Types.ObjectId;
     name: string;
@@ -20,6 +20,7 @@ const ReportSchema = new Schema<IReport>({
     diagnosis: { type: String, required: false },
     result: [{ type: String, required: false }],
     dose: { type: String, required: true },
-    patientId: { type: Schema.Types.ObjectId, required: true, ref: "User" },
+    patientId: { type: Schema.Types.ObjectId, required: true, ref: "Users" },
 },{timestamps: true});
-export default mongoose.models.Report || mongoose.model<IReport>("Report", ReportSchema);
+const RecordsModel: Model<IReport> = mongoose.model<IReport>("MedicalRecords", ReportSchema);
+export default RecordsModel;
