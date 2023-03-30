@@ -101,6 +101,7 @@ function FormComponent() {
             password: state.password
         })
         console.log(status)
+        router.push('/')
     }
     return (
         <>
@@ -118,7 +119,7 @@ function FormComponent() {
                         <p onClick={()=>dispatch({name:'passwordType', value: !state.passwordType})}  style={{cursor:'pointer',display:'inline-block'}}>show</p>
                     </div>
                     <input onClick={handleSignIn} type="submit" value="SIGN IN" />
-                    <input style={{color: 'white', background:'blue'}} required type="submit" value="SIGN IN WITH GOOGLE" />
+                    <input onClick={()=>signIn('google')} style={{color: 'white', background:'blue'}} required type="submit" value="SIGN IN WITH GOOGLE" />
                 </form>
                 <form className={styles.form} onSubmit={handleFormSubmit}>
                     <p style={{fontWeight: 'bold', fontSize: '20px'}}>Create an Account Today!!</p>
