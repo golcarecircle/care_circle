@@ -1,8 +1,7 @@
 import NextAuth from 'next-auth';
-import clientPromise from './clientPromise';
 import Credentials from 'next-auth/providers/credentials';
 import { getUserById } from '../controllers/user.controller';
-import { User } from '../users';
+import { IUser } from '../users';
 import bcrypt from 'bcryptjs';
 interface Credentials{
   email: string;
@@ -20,11 +19,8 @@ export default NextAuth({
                 password:{label:'password',type:'password'}
             },
             async authorize(credentials: Credentials,req){
-                const { email, password } = credentials as {
-                    email: string
-                    password: string
-                }
-                const user: User| null = await getUserById(email);
+                const { email, password } = credentials;
+                const user: IUser| null = await getUserById(email);
                 if (!user) {
                     throw new Error("No User Found");
                 }
@@ -43,12 +39,6 @@ export default NextAuth({
   ],
 });
 
-
-
-interface Data  {
-    email: string;
-    password: string;
-}
 // const options = {
 //     // adapter: MongoDBAdapter(clientPromise),
 //     providers: [
