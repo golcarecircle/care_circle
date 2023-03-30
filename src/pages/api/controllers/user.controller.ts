@@ -1,19 +1,23 @@
 import UserModel from "../models/user.model"
 import bcryptjs from 'bcryptjs'
-import { User } from "../users";
+import { UserX } from "../users";
+import connectDB from "../db";
 export const getAllUser =async () => {
+    await connectDB();
     const users = await UserModel.find({})
     return users;
 }
 export const getUserById = async (email: string) => {
-    const user: User | null = await UserModel.findOne({
+    const user: UserX | null = await UserModel.findOne({
         email
     });
     if(!user) throw new Error("No User Found");
     return user;
 }
-export const createUser = async (user: User) => {
-    const userAdded:User = {
+export const createUser = async (user: UserX) => {
+    console.log('Request to add user: ', user)
+    console.log(await connectDB());
+    const userAdded: UserX = {
         ...user,
         password: bcryptjs.hashSync(user.password, 10),
         userType: 'PATIENT',
@@ -22,7 +26,7 @@ export const createUser = async (user: User) => {
     const finduser = await UserModel.findOne({
         email: userAdded.email
     });
-    if(finduser) throw new Error("No User Found");
+    if(finduser) throw new Error("User Found, Change Email");
     const newUser = await UserModel.create(userAdded);
     return newUser;
 }
