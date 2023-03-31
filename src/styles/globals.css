@@ -45,6 +45,14 @@ a{
   text-decoration: none; 
 }
 
+nav {
+  position: fixed;
+  top: 0;
+  z-index: 999999999999999;
+  padding: 0 2rem;
+  width: 100vw;
+}
+
 ul {
   display: flex;
   align-items: center;
@@ -71,7 +79,6 @@ button {
 
 body {
   height: 100vh;
-  padding: 0 2rem;
   color: var(--text-color);
   background-color: var(--background-color);
   font-size: 19px;
