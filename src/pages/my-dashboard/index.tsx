@@ -1,11 +1,18 @@
+"use client"
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth/next";
 import { getSession} from "next-auth/react";
-import { options } from "../api/auth/[...nextauth]"
+import { selectMedicalRecords, setMedicalRecords } from "@/redux/patientInfoSlice";
+import { getUserRecords } from "../api/controllers/records.controller";
+import { wrapper } from "@/redux";
+import {useDispatch, useSelector} from 'react-redux'
 import Head from "next/head";
 import Image from "next/image";
 import {AiOutlineClockCircle} from 'react-icons/ai'
 function UserDashboard({user}:any) {
+    //read the state using the useSelector function
+    const records = useSelector(selectMedicalRecords);
+    const dispatch = useDispatch()
     console.log(user);
     return(
         <>
@@ -105,23 +112,29 @@ function UserDashboard({user}:any) {
         </>
     )
 }
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-    console.log(context.req)
-    const session = await getServerSession(context.req,context.res,options);
-    //get the id of logged in user from the session from the database
-    console.log('Session in my dashboard is: ',session);
-    if (!session) {
+
+export const getServerSideProps =  wrapper.getServerSideProps(
+    (store)=> async (context: GetServerSidePropsContext) => {
+        const session = await getSession(context);
+        //get the id of logged in user from the session from the database
+        console.log('Session in my dashboard is: ',session);
+        if (!session) {
+            return {
+                redirect: {
+                    destination: '/auth',
+                    permanent: false
+                }
+            }
+        }
+        const medicalRecordsOfUser = await getUserRecords(session.user?.id);
+        await store.dispatch(setMedicalRecords(medicalRecordsOfUser))
+        console.log('State from server is: ',store.getState());
         return {
-            redirect: {
-                destination: '/auth',
-                permanent: false
+            props: {
+                user: session?.user,
+                records: medicalRecordsOfUser
             }
         }
     }
-    return {
-        props: {
-            user: session?.user
-        }
-    }
-}
+)
 export default UserDashboard;
