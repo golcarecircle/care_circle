@@ -16,8 +16,10 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"]
+
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/util/Routing.tsx"],
+  "exclude": ["node_modules"],
+
 }

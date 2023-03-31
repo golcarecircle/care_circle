@@ -1,0 +1,49 @@
+
+.nav {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav > .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav > .logo > svg {
+    height: 40px;
+    width: 40px;
+}
+
+.nav > .logo > h1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    
+    background: var(--bg-color-light);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav > .links > li {
+    display: inline-block;
+    padding: 0 1rem;
+}
+
+.nav > .links > li > a {
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 20px;
+    text-align: center; 
+    color: var(--text-color);
+}
+
+.nav > .links > li > a:hover {
+    color: var(--primary-blue);
+}

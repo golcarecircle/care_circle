@@ -3,11 +3,22 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
 module.exports = {
-  images:{
+  ...nextConfig,
+  async redirects() {
+    return [
+      {
+        source: '/old-page',
+        destination: '/new-page',
+        permanent: true,
+      },
+    ]
+  },
+  images: {
     domains: [
       "health.gov"
     ]
   }
 }
+
+// next.config.js
