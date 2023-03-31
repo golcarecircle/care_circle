@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IReport } from '../pages/api/models/report.model';
 import { PayloadAction } from "@reduxjs/toolkit";
+import { AppState } from ".";
 
 interface MedicalRecord{
     search:string
@@ -15,11 +16,11 @@ const recordsSlice = createSlice({
     name:'records',
     reducers:{
         setMedicalRecords(state,action){
-            //read from database and set the records
             state.records = action.payload
         }
     },
     initialState: INITIAL_STATE
 })
 export const {setMedicalRecords} = recordsSlice.actions
+export const selectMedicalRecords = (state:AppState) => state.recordsReducer.records
 export default recordsSlice.reducer;
