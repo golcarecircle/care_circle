@@ -22,5 +22,10 @@ const ReportSchema = new Schema<IReport>({
     dose: { type: String, required: true },
     patientId: { type: Schema.Types.ObjectId, required: true, ref: "Users" },
 },{timestamps: true});
-const RecordsModel: Model<IReport> = mongoose.model<IReport>("MedicalRecords", ReportSchema);
+let RecordsModel : Model<IReport>;
+try{
+    RecordsModel = mongoose.model<IReport>('MedicalRecords');
+}catch(err){
+    RecordsModel = mongoose.model<IReport>("MedicalRecords", ReportSchema);
+}
 export default RecordsModel;

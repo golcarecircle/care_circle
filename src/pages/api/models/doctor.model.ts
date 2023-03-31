@@ -1,6 +1,6 @@
 import UserModel from "./user.model";
 import mongoose from "mongoose";
-interface IAdmin extends mongoose.Document {
+export interface IAdmin extends mongoose.Document {
     role: string;
     appointments: mongoose.Types.ObjectId[];
 }
