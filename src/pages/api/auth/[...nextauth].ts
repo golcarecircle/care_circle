@@ -5,7 +5,6 @@ import { getUserById } from '../controllers/user.controller';
 import { IUser } from '../users';
 import bcrypt from 'bcryptjs';
 import { NextApiHandler } from 'next';
-import { JWT } from 'next-auth/jwt';
 interface Credentials{
   email: string;
   password: string;
@@ -29,6 +28,7 @@ export const options: NextAuthOptions = {
             return Promise.resolve(session);
         },
     },
+    secret: process.env.MONGODB_URI,
     providers: [
         GoogleProvider({
             id: 'google',
@@ -52,6 +52,7 @@ export const options: NextAuthOptions = {
                 if (!isMatch) {
                     throw new Error("Password doesnt Match");
                 }
+                
                 return {
                     id: user._id,
                     name: user.name,
