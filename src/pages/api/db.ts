@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 //connect to mongodb
-const connectionUrl = process.env.MONGODB_URI || "mongodb://localhost:27017/care_circle";
+const connectionUrl = "mongodb://localhost:27017/care_circle";
 const connectDB = async () => {
     console.log('Environment URI is: ', process.env.MONGODB_URI);
     try {

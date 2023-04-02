@@ -5,9 +5,20 @@ import { getUserById } from '../controllers/user.controller';
 import { IUser } from '../users';
 import bcrypt from 'bcryptjs';
 import { NextApiHandler } from 'next';
+import { JWT } from 'next-auth/jwt';
 interface Credentials{
   email: string;
   password: string;
+}
+export interface MySession extends Session{
+    user:{
+        id: string,
+        name: string,
+        email: string,
+        phone: string,
+        isAdmin: boolean,
+        image: string
+    }
 }
 export const options: NextAuthOptions = {
     session:{
@@ -15,7 +26,6 @@ export const options: NextAuthOptions = {
     },
     callbacks: {
         async jwt({token, user}) {
-            
             if (user) {
                 token.user = user;
             }
@@ -36,13 +46,28 @@ export const options: NextAuthOptions = {
             clientSecret: ''
         }),
         Credentials({
+            id: 'doctor-creds',
+            name: 'doctor-creds',
+            credentials:{
+                staffId: {label:'staffId',type:'text'},
+                password: {label:'password',type:'password'}
+            },
+            authorize(creds){
+                const {staffId, password} = creds as{
+                    staffId: string,
+                    password: string
+                }
+
+            }
+        }),
+        Credentials({
             id: 'credentials',
             name: 'credentials',
             credentials:{
                 email:{label:'email', type:'text',placeholder:''},
                 password:{label:'password',type:'password'}
             },
-            async authorize(credentials: Credentials,req){
+            async authorize(credentials: Credentials){
                 const { email, password } = credentials;
                 const user: IUser| null = await getUserById(email);
                 if (!user) {
@@ -52,13 +77,12 @@ export const options: NextAuthOptions = {
                 if (!isMatch) {
                     throw new Error("Password doesnt Match");
                 }
-                
                 return {
                     id: user._id,
                     name: user.name,
                     email: user.email,
                     phone: user.phone,
-                    isAdmin: user.userType==='PATIENT'?true:false,
+                    isAdmin: user.userType==='DOCTOR'?true:false,
                 };
             },
             

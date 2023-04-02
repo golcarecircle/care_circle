@@ -1,7 +1,6 @@
 import RecordsModel from "../models/report.model";
 import { IReport } from "../models/report.model";
 import UserModel from "../models/user.model";
-import { IUser } from "../models/user.model";
 export const getAllRecords =async () => {
     const getAllRecords = await RecordsModel.find();
     return getAllRecords;
@@ -22,6 +21,9 @@ export const getUserRecords =async (userId: string) => {
     return record.medicalRecords;
 }
 export const createRecord =async (record:IReport): Promise<IReport> => {
+    if (!record) {
+        throw new Error('Enter Information')
+    }
     const newRecord = await RecordsModel.create({...record})
     return newRecord;
 }

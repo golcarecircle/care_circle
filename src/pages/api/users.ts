@@ -13,16 +13,12 @@ export type IUser = {
     phone: string;
     location: string;
     dob: Date;
+    image: string;
     createdAt?: Date;
     updatedAt?: Date;
-
 }
 export type UserX = Omit<IUser,  | 'createdAt' | 'updatedAt' >;
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<IUser[]>
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<IUser[]>){
   await connectDB();
   const users: IUser[] = await getAllUser();
   return res.status(200).json(users);
