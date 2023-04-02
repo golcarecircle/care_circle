@@ -1,9 +1,11 @@
 import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 import recordsReducer from './patientInfoSlice';
+import appointmentsReducer from './doctorSlice';
 import { createWrapper } from 'next-redux-wrapper'
 export const store =()=>( configureStore({
     reducer: {
         recordsReducer,
+        appointmentsReducer
     }
 }));
 export type AppStore = ReturnType<typeof store>
