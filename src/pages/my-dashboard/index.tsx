@@ -9,7 +9,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import Head from "next/head";
 import Image from "next/image";
 import {AiOutlineClockCircle} from 'react-icons/ai'
-function UserDashboard({user}:any) {
+import { IUser } from "../api/users";
+function UserDashboard({user}:{user:IUser}) {
     //read the state using the useSelector function
     const records = useSelector(selectMedicalRecords);
     const dispatch = useDispatch()
@@ -17,7 +18,7 @@ function UserDashboard({user}:any) {
     return(
         <>
             <Head>
-                <title> {user?.name} - CareCircle</title>
+                <title> {user.name} - CareCircle</title>
                 <meta name="description" content="Care Circle Home Page" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
@@ -117,7 +118,6 @@ export const getServerSideProps =  wrapper.getServerSideProps(
     (store)=> async (context: GetServerSidePropsContext) => {
         const session = await getSession(context);
         //get the id of logged in user from the session from the database
-        console.log('Session in my dashboard is: ',session);
         if (!session) {
             return {
                 redirect: {
