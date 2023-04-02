@@ -5,3 +5,22 @@
     background-size: 60%;
     background-position: right;
 }
+
+.section > .container {
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: ; */
+    justify-content: center;
+}
+
+.section > .container > h1 {
+    color: var(--primary-blue);
+}
+
+.section > .container > h1,
+.section > .container > p{
+    font-size: 3rem;
+    font-weight: bold;
+}

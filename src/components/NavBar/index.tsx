@@ -25,7 +25,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav style={{ backgroundColor: visible ? "#f8f8f8" : "transparent" }}>
+    <nav style={{ backgroundColor: visible ? "transparent" : "#f8f8f8" }}>
       <div className={styles.nav}>
         <div className={styles.logo}>
           {medIcon()}
