@@ -1,6 +1,4 @@
-"use client"
 import { GetServerSidePropsContext } from "next";
-import { getServerSession } from "next-auth/next";
 import { getSession} from "next-auth/react";
 import { selectMedicalRecords, setMedicalRecords } from "@/redux/patientInfoSlice";
 import { getUserRecords } from "../api/controllers/records.controller";

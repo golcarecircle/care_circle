@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 function NavComponent() {
     const {data: session} = useSession();
+    console.log(session)
     return(
         <header className={navStyles.header}>
             <h1>CareCircle</h1>
@@ -24,6 +25,13 @@ function NavComponent() {
                         session && (
                             <li>
                                 <Link href='/my-dashboard'>My Dashboard</Link>
+                            </li>
+                        )
+                    }
+                    {
+                        session && session.user?.isAdmin (
+                            <li>
+                                <Link href='/doctor-dashboard'>My Dashboard</Link>
                             </li>
                         )
                     }

@@ -3,6 +3,13 @@ import BackDrop from '@/components/Backdrop/Backdrop';
 import Modal from '@/components/modal/Modal'; 
 import modalStyles from '@/components/modal/Modal.module.css';
 import Link from 'next/link';
+import { wrapper } from '@/redux';
+import { GetServerSidePropsContext } from 'next';
+import { getSession } from 'next-auth/react';
+import { Session } from 'next-auth';
+import { getADoctor } from '../api/controllers/doctor.controller';
+import { IAdmin } from '../api/models/doctor.model';
+import { setAppointments } from '@/redux/doctorSlice';
 function DoctorDashboard() {
     const [toogle, setToogle] = React.useState(false);
     const handleClick = () => {
@@ -84,5 +91,26 @@ function DoctorDashboard() {
         </>
     );
 }
-
+export const getServerSideProps = wrapper.getServerSideProps(
+    (store)=> async (context: GetServerSidePropsContext) => {
+        const session= await getSession(context);
+        if (!session && session?.user?.isAdmin !==true) {
+            return{
+                redirect:{
+                    destination:'/auth',
+                    permanent: false
+                }
+            }
+        }
+        const doctor:IAdmin = await getADoctor(session?.user?.id);
+        console.log(doctor);
+        store.dispatch(setAppointments(doctor.appointments));
+        console.log('State from server is: ',store.getState());
+        return{
+            props:{
+                doctor
+            }
+        }
+    }
+)
 export default DoctorDashboard;
