@@ -4,6 +4,7 @@ import appointmentsReducer from './doctorSlice';
 import { createWrapper } from 'next-redux-wrapper';
 import { patientSearchApi } from "./patientSearch";
 export const store =()=>( configureStore({
+	devTools: process.env.NODE_ENV !== 'production',
     reducer: {
         recordsReducer,
         appointmentsReducer,

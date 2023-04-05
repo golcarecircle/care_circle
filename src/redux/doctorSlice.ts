@@ -16,7 +16,7 @@ const doctorSlice = createSlice({
         setAppointments(state,action){
             state.appointments=action.payload
         }
-    }
+    },
 })
 export const {setAppointments} = doctorSlice.actions;
 export const selectAppointments = (state: AppState) =>state.appointmentsReducer.appointments

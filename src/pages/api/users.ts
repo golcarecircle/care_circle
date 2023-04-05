@@ -44,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			}
 			break;
 		default:
+			res.status(400).json({message: 'Error updating user'});
 			break;
 	}
   
