@@ -1,11 +1,11 @@
-import NextAuth, {NextAuthOptions, Session} from 'next-auth';
+import NextAuth, {NextAuthOptions, Session, User} from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { getUserById } from '../controllers/user.controller';
 import { IUser } from '../users';
 import bcrypt from 'bcryptjs';
 import { NextApiHandler } from 'next';
-import { JWT } from 'next-auth/jwt';
+import { getDoctorByStaffID } from '../controllers/doctor.controller';
 interface Credentials{
   email: string;
   password: string;
@@ -20,6 +20,13 @@ export interface MySession extends Session{
         image: string
     }
 }
+interface MyUser extends User{
+    id: string,
+    name: string,
+    email: string,
+    phone: string,
+    isAdmin: boolean,
+}
 export const options: NextAuthOptions = {
     session:{
         strategy: 'jwt',
@@ -33,7 +40,7 @@ export const options: NextAuthOptions = {
         },
         async session({ session,token }){
             if (token) {
-                session.user = token.user
+                session.user = token.user as MyUser;
             }
             return Promise.resolve(session);
         },
@@ -52,23 +59,38 @@ export const options: NextAuthOptions = {
                 staffId: {label:'staffId',type:'text'},
                 password: {label:'password',type:'password'}
             },
-            authorize(creds){
+            async authorize(creds){
                 const {staffId, password} = creds as{
                     staffId: string,
                     password: string
                 }
-
+                const doctor = await getDoctorByStaffID(staffId);
+                if (!doctor) {
+                    throw new Error("No Doctor Found");
+                }
+                const isMatch = await bcrypt.compare(password, doctor.password);
+                if (!isMatch) {
+                    throw new Error("Password doesnt Match");
+                }
+                return {
+                    id: doctor._id,
+                    name: doctor.name,
+                    email: doctor.email,
+                    phone: doctor.phone,
+                    isAdmin: true,
+                    image: doctor.image
+                };
             }
         }),
         Credentials({
             id: 'credentials',
             name: 'credentials',
             credentials:{
-                email:{label:'email', type:'text',placeholder:''},
+                email: {label:'email', type:'text',placeholder:''},
                 password:{label:'password',type:'password'}
             },
-            async authorize(credentials: Credentials){
-                const { email, password } = credentials;
+            async authorize(credentials){
+                const { email, password } = credentials as Credentials;
                 const user: IUser| null = await getUserById(email);
                 if (!user) {
                     throw new Error("No User Found");
@@ -82,10 +104,9 @@ export const options: NextAuthOptions = {
                     name: user.name,
                     email: user.email,
                     phone: user.phone,
-                    isAdmin: user.userType==='DOCTOR'?true:false,
+                    isAdmin: false,
                 };
             },
-            
         })
     ],
 }
