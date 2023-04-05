@@ -1,7 +1,7 @@
 import NextAuth, {NextAuthOptions, Session, User} from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import { getUserById } from '../controllers/user.controller';
+import { getUserByEmail } from '../controllers/user.controller';
 import { IUser } from '../users';
 import bcrypt from 'bcryptjs';
 import { NextApiHandler } from 'next';
@@ -91,7 +91,7 @@ export const options: NextAuthOptions = {
             },
             async authorize(credentials){
                 const { email, password } = credentials as Credentials;
-                const user: IUser| null = await getUserById(email);
+                const user: IUser| null = await getUserByEmail(email);
                 if (!user) {
                     throw new Error("No User Found");
                 }
