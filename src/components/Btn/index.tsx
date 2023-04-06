@@ -3,13 +3,13 @@ import styles from './Button.module.css'
 
 type Props = {
   onClick: () => void;
-  name: string;
+  text: string;
 };
 
-export default function Button({ onClick,  name}: Props) {
+export default function Button({ onClick,  text}: Props) {
   return (
     <button className={styles.button}  onClick={onClick}>
-        {name}
+        {text}
     </button>
   );
 }

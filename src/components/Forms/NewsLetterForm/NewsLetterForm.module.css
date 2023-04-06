@@ -1,0 +1,37 @@
+.news__letter__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 1rem auto;
+    padding: 0 1rem;
+}
+
+.news__letter__form > form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.news__letter__form > form > input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #D9DBE9;
+    border-radius: 5px;
+    padding: 0 1rem;
+    font-size: 16px;
+    color: #6F6C90;
+    margin-right: 1rem; 
+}
+
+
+.news__letter__form > form > input::placeholder {
+    color: #6F6C90;
+    font-size: smaller;
+}

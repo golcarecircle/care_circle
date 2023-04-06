@@ -1,4 +1,5 @@
 @import url(./colors.css);
+@import url(./satoshi.css);
 
 :root {
   --background-color: var(--very-dark-blue);
@@ -11,18 +12,6 @@
     --background-image: var(--bg-image-dark-lg);
   }
 }
-
-/* @media (prefers-color-scheme: dark) and (max-width: 599px) {
-  :root {
-    --background-image: var(--bg-image-dark-sm);
-  }
-}
-
-@media (prefers-color-scheme: light) and (min-width: 600px) {
-  :root {
-    --background-image: var(--bg-image-light-sm);
-  }
-} */
 
 *,
 *::before,
@@ -37,11 +26,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter';
+  font-family: 'satoshi', sans-serif;
   font-style: normal;
 }
 
-a{
+a {
   text-decoration: none; 
 }
 
@@ -53,22 +42,6 @@ nav {
   width: 100vw;
 }
 
-ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-}
-
-ul li {
-  padding: 0.2rem;
-}
-
-form {
-  display: flex;
-}
-
-input:not([type="radio"]):not([type="checkbox"]),
 button {
   appearance: none;
   border: none;
@@ -77,34 +50,10 @@ button {
   cursor: initial;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  height: 100vh;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  font-size: 19px;
-}
-
-section {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5em;
-}
-
-h3 {
-  color: var(--dark);
-  font-size: 1rem;
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
-h4 {
-  color: var(--text-color);
-  font-size: 0.875rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.bg {
-  background: var(--todo-bg-color);
+    background-color: #f8f8f8;
 }

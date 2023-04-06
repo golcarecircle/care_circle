@@ -1,8 +1,10 @@
 :root {
     /* Primary Colors */
-    --primary-blue: #1678F2;
-    --primary-blue-dark: #0a4b9c;
-    --primary-blue-light: #e6f0ff;
+    --primary-blue: #2A72DD;
+    --secondary-blue: #4461F2;
+    --bg-color-light: #ffffff;
+    --text-color: #333333;
+
   
     /* Secondary Colors */
     --secondary-orange: #ff6600;
@@ -21,4 +23,7 @@
     /* Text Colors */
     --text-color-light: #404040;
     --text-color-dark: #ffffff;
+
+    --font-satoshi: 'Satoshi', sans-serif;
+    --font-inter: 'Inter', sans-serif;
   }

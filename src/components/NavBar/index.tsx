@@ -1,36 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { medIcon } from "@/assets/icons";
+import React, { FC, useState, useEffect } from "react";
 import styles from "./NavBar.module.css";
 import Link from "next/link";
 import Button from "../Btn";
+import Logo from "../Logo";
 
-export default function NavBar() {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
+const NavBar: FC = () => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    let prevScrollPos = window.pageYOffset;
+
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+
+      setVisible(
+        (prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) ||
+          currentScrollPos < 10
+      );
+
+      prevScrollPos = currentScrollPos;
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-
-    setVisible(
-      (prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) ||
-        currentScrollPos < 10
-    );
-
-    setPrevScrollPos(currentScrollPos);
-  };
-
   return (
-    <nav style={{ backgroundColor: visible ? "transparent" : "#f8f8f8" }}>
+    <nav className={visible ? styles.navCont : `${styles.navCont} ${styles.scrolled}`}>
       <div className={styles.nav}>
-        <div className={styles.logo}>
-          {medIcon()}
-          <h1 className={styles.brand}> CareCircle</h1>
-        </div>
+        <Link href={"/"}>
+          <Logo size="medium"/>
+        </Link>
+        
         <ul className={styles.links}>
           <li>
             <Link href={"/"}>Home</Link>
@@ -42,10 +43,12 @@ export default function NavBar() {
             <Link href={"/how-to-use"}>How to Use</Link>
           </li>
           <li>
-            <Button onClick={() => {}} name={"Sign Up"} />
+            <Button onClick={() => {}} text={"Sign Up"} />
           </li>
         </ul>
       </div>
     </nav>
   );
-}
+};
+
+export default NavBar;

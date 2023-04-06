@@ -19,7 +19,7 @@
 
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/util/Routing.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/util/Routing.tsx", "src/assets/son"],
   "exclude": ["node_modules"],
 
 }

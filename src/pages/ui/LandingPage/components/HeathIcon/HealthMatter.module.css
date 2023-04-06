@@ -1,0 +1,25 @@
+.container {
+    padding: .1rem 2rem;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+}
+
+.container > h1{
+    font-family: 'Satoshi';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 2.5rem;
+    color: #525252;
+}
+
+.container > svg{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-left: .2rem;
+}

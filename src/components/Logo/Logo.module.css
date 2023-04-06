@@ -1,0 +1,55 @@
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  
+}
+
+.logo > svg {
+  margin-right: 4px;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.logo > .brand {
+  font-family: 'satoshi';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+
+  background: var(--bg-color-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media screen and (max-width: 768px) {
+  .brand {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .brand {
+    font-size: 2.25rem;
+  }
+}
+
+/* Added classes */
+.logo--small > svg {
+    margin-right: 4px;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.logo--small > .brand {
+  font-size: 1.5rem;
+}
+
+.logo--large > .brand {
+  font-size: 3rem;
+}
+  
