@@ -1,29 +1,42 @@
 import React, { useContext } from 'react';
-import Image from 'next/image';
-
 import { GetStaticPropsContext } from 'next';
-import { ResponseData } from '.';
-import { HealthTipsContext } from '@/context/healthTips.context';
+import { HealthTipsContext} from '@/context/healthTips.context';
 type Props = {
-    tip: ResponseData
+    tipId: string | number
 }
-function TipID({tip}:Props) {
+function TipID({tipId}:Props) {
+    console.log(tipId);
+    const { healthTips, } = useContext(HealthTipsContext);
+    const tip = healthTips.find((tip)=> tip.Id === tipId);
+    console.log(tip?.Sections.section);
+    if (!tip) return <p>Tip not found</p>
+
     return (
         <div>
-            <h1>More Info Component</h1> 
+            {
+                tip.Sections.section.map((section, index)=>{
+                    return(
+                        <>
+                            <div  key={index}>
+                                <h1>{section.Title}</h1>
+                            </div>
+                            <p>{section.Description}</p>
+                            <div style={{margin:'10px'}} dangerouslySetInnerHTML={{__html: section.Content}} />
+                        </>
+                    )
+                })
+            }  
         </div>
     );
 }
-
-export async function getServerSideProps(context:GetStaticPropsContext){
+export default TipID;
+export async function getServerSideProps(context: GetStaticPropsContext){
     const { params } = context;
-    const id = params?.id;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { healthTips } = useContext(HealthTipsContext);
-    const tip = healthTips.find((it)=>it.Id === id);
+    const id = params?.Id;
+    console.log('Id: ', id);
     return{
         props: {
-            tip
+            tipId: id
         }
     }
 }

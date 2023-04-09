@@ -21,6 +21,7 @@ specifiers:
   react-icons: ^4.8.0
   react-redux: ^8.0.5
   redux-persist: ^6.0.0
+  swr: ^2.1.2
   typescript: 5.0.2
 
 dependencies:
@@ -43,6 +44,7 @@ dependencies:
   react-icons: 4.8.0_react@18.2.0
   react-redux: 8.0.5_3xleytyzprlgycb2ded54tx72i
   redux-persist: 6.0.0_react@18.2.0
+  swr: 2.1.2_react@18.2.0
   typescript: 5.0.2
 
 devDependencies:
@@ -2434,6 +2436,15 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: false
+
+  /swr/2.1.2_react@18.2.0:
+    resolution: {integrity: sha512-ocfaD2rnYZKqTDplCEX2bH5Z1++n2JSej9oYi7hVfXXWYm+0RP+H6fVrogWB0mtMclv1guk9kEnAzNLygOy9Hw==}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
 
   /synckit/0.8.5:
