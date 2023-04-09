@@ -25,7 +25,6 @@ const appointmentSchema = new Schema<Appointment>({
     doctor: {
         type: Schema.Types.ObjectId,
         required: true,
-
     },
     symptoms:[{
         type: String,
