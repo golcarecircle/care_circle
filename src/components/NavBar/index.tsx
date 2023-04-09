@@ -43,7 +43,10 @@ const NavBar: FC = () => {
             <Link href={"/how-to-use"}>How to Use</Link>
           </li>
           <li>
-            <Button onClick={() => {}} text={"Sign Up"} />
+          <Button onClick={() => {
+            window.location.href = '/signup';
+          }} text={"Sign Up"} />
+
           </li>
         </ul>
       </div>
