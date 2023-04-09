@@ -7,7 +7,7 @@ type Section={
     section:{
         Title: string;
         Description? :string;
-        Content: React.ReactNode
+        Content: string
     }[]
 }
 export type ResponseData = {
@@ -33,28 +33,3 @@ export default function About(){
         </>
     )
 }
-// export async function getSortedData() {
-//     let ResponseRetData = {}
-//     const response = await fetch(`https://health.gov/myhealthfinder/api/v3/topicsearch.json`);
-//     const data =await response.json();
-//     const dataReturned: ResponseData[] = data['Result'].Resources.Resource;
-//     ResponseRetData = dataReturned.map(function(it) {
-//         return{
-//             Id: it.Id,
-//             ImageAlt: it.ImageAlt,
-//             ImageUrl: it.ImageUrl,
-//             Sections: it.Sections,
-//             Title: it.Title
-//         }
-//     })
-//     return ResponseRetData;
-// }
-// export const getServerSideProps = async () => {
-//     const allData = await getSortedData();
-//     console.log(allData);
-//     return {
-//         props: {
-//             allData
-//         }
-//     }
-// }

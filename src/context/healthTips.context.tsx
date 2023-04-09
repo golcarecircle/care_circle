@@ -3,7 +3,7 @@ type Section={
     section:{
         Title: string;
         Description? :string;
-        Content: React.ReactNode
+        Content: string
     }[]
 }
 export type ResponseData = {
