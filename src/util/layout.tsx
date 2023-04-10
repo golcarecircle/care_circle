@@ -1,4 +1,4 @@
-import { Footer, NavBar } from '@/components';
+import {NavBar } from '@/components';
 import React from 'react';
 
 
@@ -11,7 +11,6 @@ export default function Layout({ children }: Props) {
         <div>
             <NavBar />
             {children} 
-            <Footer />
         </div>
     );
 }

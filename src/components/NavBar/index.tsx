@@ -44,8 +44,8 @@ const NavBar: FC = () => {
           </li>
           <li>
           <Button onClick={() => {
-            window.location.href = '/signup';
-          }} text={"Sign Up"} />
+            window.location.href = '/auth';
+          }} text={"Get Started"} />
 
           </li>
         </ul>

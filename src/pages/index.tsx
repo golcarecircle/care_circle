@@ -1,8 +1,11 @@
+import Layout from "@/util/layout";
 import React from "react";
-import LandingPage from "./ui/LandingPage";
+import LandingPage from "./landingPage";
 
 export default function Home() {
     return (
-      <LandingPage/>
+      <Layout>
+        <LandingPage/>
+      </Layout>
     );
 }

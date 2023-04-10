@@ -1,7 +1,7 @@
 import NewsLetterForm from '@/components/Forms/NewsLetterForm'
 import { FC } from 'react'
 import styles from './NewsLetter.module.css'
-export const NewsLetter: FC = ({}) => {
+const NewsLetter: FC = ({}) => {
   return <section>
     <div className={styles.newsletter__container}>
         <div className={styles.newsletter__text}>
@@ -12,3 +12,5 @@ export const NewsLetter: FC = ({}) => {
     </div>
   </section>
 }
+
+export default NewsLetter

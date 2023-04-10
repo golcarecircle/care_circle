@@ -16,6 +16,7 @@ specifiers:
   next: 13.2.4
   next-auth: ^4.20.1
   next-redux-wrapper: ^8.1.0
+  next-routes: ^1.4.2
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.8.0
@@ -38,6 +39,7 @@ dependencies:
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.20.1_ld2jel3hspngo3u5lti2kgl2sq
   next-redux-wrapper: 8.1.0_tkvsu76c7rlbwbwuszet747gf4
+  next-routes: 1.4.2_next@13.2.4+react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
@@ -1831,6 +1833,17 @@ packages:
       react-redux: 8.0.5_3xleytyzprlgycb2ded54tx72i
     dev: false
 
+  /next-routes/1.4.2_next@13.2.4+react@18.2.0:
+    resolution: {integrity: sha512-1Ljs0BEV9IGcJLKxC/WZUtmftSvmkY6DlI8fVs8dClCoR82QRzBGRka/L/XB76wE5814MMeP9qVJYQil0FE9QQ==}
+    peerDependencies:
+      next: '>=2'
+      react: ^15.4.2 || ^16
+    dependencies:
+      next: 13.2.4_biqbaboplfbrettd7655fr4n2y
+      path-to-regexp: 2.4.0
+      react: 18.2.0
+    dev: false
+
   /next/13.2.4_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-g1I30317cThkEpvzfXujf0O4wtaQHtDCLhlivwlTJ885Ld+eOgcz7r3TGQzeU+cSRoNHtD8tsJgzxVdYojFssw==}
     engines: {node: '>=14.6.0'}
@@ -2032,6 +2045,10 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
+    dev: false
+
+  /path-to-regexp/2.4.0:
+    resolution: {integrity: sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==}
     dev: false
 
   /path-type/4.0.0:
