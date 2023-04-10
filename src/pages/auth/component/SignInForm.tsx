@@ -23,7 +23,7 @@ const SignInForm: React.FC = () => {
 
   return (
     <Form onSubmit={handleSubmit} inputs={inputs} buttonText={"Sign In"} >
-      <p>forgot password</p>
+      <p>forgot password?</p>
     </Form>
   );
 };

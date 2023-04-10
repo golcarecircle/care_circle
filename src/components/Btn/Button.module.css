@@ -25,6 +25,7 @@
 
 .button.md {
   font-size: 1rem;
+  width: fit-content;
 }
 
 .button.lg {

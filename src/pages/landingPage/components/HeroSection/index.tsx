@@ -18,7 +18,7 @@ const HeroSection: FC<HeroSectionProps> = ({}) => {
         <HealthMatter />
         <h1 className={styles.title}>Join Care Circle </h1>
         <p className={styles.subtitle}>Take control of your health with cutting-edge technology at your fingertips.</p>
-        <Button text='Join Us' onClick={ () => {}}/>
+        <Button text='Join Us' onClick={ () => {}} size="md"/>
     </div>
   </section>
 }

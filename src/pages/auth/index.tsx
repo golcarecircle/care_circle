@@ -21,7 +21,7 @@ const Auth: FC<AuthProps> = ({}) => {
         <div className={styles.auth__container}>
           <div className={styles.auth__text}>
             <h1>
-              Welcome to <span>CareCircle</span>
+            Welcome to CareCircle<br/> Your gateway to seamless and personalized healthcare!
             </h1>
           </div>
           <div className={styles.auth__form}>
@@ -31,22 +31,29 @@ const Auth: FC<AuthProps> = ({}) => {
             {activeTab === "signup" ? <SignupForm /> : <SignInForm />}
 
             <div className={styles.auth__option}>
-              <p>
-                or continue with
-              </p>
-              <div className={styles.auth__social}></div>
-              <div className="google__auth">
-                {google()}
+              <div className={styles.cont}>
+                <div />
+                <p >
+                  or continue with
+                </p>
+                <div />
               </div>
-              <div className="fb__auth">
-                {fb()}
+
+              <div className={styles.auth__social}>
+                <button className="google__auth">
+                  {google()}
+                </button>
+                <button className="fb__auth">
+                  {fb()}
+              </button>
               </div>
             </div>
+
             <p>
               {activeTab === "signup" ? "Already have an account?" : "Don't have an account yet?"}{" "}
-              <button onClick={() => handleTabChange(activeTab === "signup" ? "signin" : "signup")}>
+              <a onClick={() => handleTabChange(activeTab === "signup" ? "signin" : "signup")}>
                 {activeTab === "signup" ? "Sign In" : "Sign Up"}
-              </button>
+              </a>
             </p>
           </div>
         </div>
