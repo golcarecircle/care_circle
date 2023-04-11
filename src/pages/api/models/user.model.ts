@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    image: {
+      type: String,
+      required: true,
+      unique: true
+    },
     location: {
       type: String,
     },
@@ -63,6 +68,7 @@ export interface IUser extends Document {
     phone: string;
     location: string;
     dob: Date;
+    image: string;
     createdAt: Date;
     updatedAt: Date;
     medicalRecords: mongoose.Types.ObjectId[];

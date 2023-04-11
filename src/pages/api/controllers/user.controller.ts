@@ -7,13 +7,19 @@ export const getAllUser =async () => {
     const users = await UserModel.find({})
     return users;
 }
-export const getUserById = async (email: string) => {
+export const getUserById = async (id: string) => {
+    const user: UserX | null = await UserModel.findById(id);
+    if(!user) throw new Error("No User Found");
+    return user;
+}
+export const getUserByEmail = async (email: string) => {
     const user: UserX | null = await UserModel.findOne({
         email
     });
     if(!user) throw new Error("No User Found");
     return user;
 }
+
 export const createUser = async (user: UserX) => {
     console.log('Request to add user: ', user)
     console.log(await connectDB());
@@ -29,4 +35,10 @@ export const createUser = async (user: UserX) => {
     if(finduser) throw new Error("User Found, Change Email");
     const newUser = await UserModel.create(userAdded);
     return newUser;
+}
+export const updateUser = async (id: string, user: UserX) => {
+    const userUpdated = await UserModel.findByIdAndUpdate(id, user, {
+        new: true
+    });
+    return userUpdated;
 }
