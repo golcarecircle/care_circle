@@ -64,7 +64,6 @@
     width: calc(100% - 4rem);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     background: #F2F4F5;
     border-radius: 2rem;
 }
