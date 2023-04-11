@@ -20,6 +20,9 @@ const SignInForm: React.FC = () => {
         throw new Error("Password must be at least 8 characters long");
       }
 
+      //login logic
+    
+
       // If all checks pass, navigate to the dashboard
       await router.push("/dashboard/patient");
     } catch (error) {

@@ -2,7 +2,7 @@ import React from "react";
 import Form, {FormInput} from '@/components/Forms';
 
 const SignupForm: React.FC = () => {
-  const handleSubmit = (formData: { [key: string]: string }) => {
+  const handleSubmit = async (formData: { [key: string]: string }) => {
     console.log(formData);
   };
 
