@@ -1,9 +1,9 @@
 import UserModel from "./user.model";
-import mongoose from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 export interface IAdmin extends mongoose.Document {
     role: boolean;
     staffId: string;
-    hospital: string;
+    hospital: Types.ObjectId;
     appointments: mongoose.Types.ObjectId[];
 }
 const AdminSchema = new mongoose.Schema<IAdmin>({
@@ -16,10 +16,10 @@ const AdminSchema = new mongoose.Schema<IAdmin>({
         required: true,
         unique: true
     },
-    hospital:{
-        type: String,
+    hospital: {
+        type: Schema.Types.ObjectId,
         required: true,
-        enum:['KENYATTA HOSPITAL','NAIROBI HOSPITAL']
+        ref: 'Hospitals'
     },
     appointments: [{
         type: mongoose.Schema.Types.ObjectId,
