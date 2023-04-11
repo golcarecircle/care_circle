@@ -5,7 +5,7 @@ import { IoMdNotifications } from 'react-icons/io';
 import { appointment, dashboard, logout, messages, profile, settings} from '@/assets/icons';
 import UserDashboard from './pages/UserDashBoard';
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 
 interface PatientProps {
 
@@ -13,7 +13,8 @@ interface PatientProps {
 
 const Patient: FC<PatientProps> = ({}) => {
   const [activeItem, setActiveItem] = useState('dashboard');
-
+  const {data: session} = useSession();
+  console.log(session)
   const handleClick = (item: string) => {
     setActiveItem(item);
   }
@@ -24,7 +25,9 @@ const Patient: FC<PatientProps> = ({}) => {
         {sideBar(activeItem, handleClick)}
       </div>
       <div className={styles.main}>
-        {dashboardNav()}
+        {
+            session && dashboardNav()
+        }
         <UserDashboard />
       </div>
     </div>
@@ -65,6 +68,7 @@ function sideBar(activeItem: string, handleClick: (item: string) => void) {
 }
 
 function dashboardNav() {
+    
   return <div className={styles.main__nav}>
     <div className={styles.main__nav__container}>
       <Logo size='small' />

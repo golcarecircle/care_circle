@@ -3,7 +3,7 @@ import { IReport } from './report.model';
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    fullName: {
       type: String,
     },
     userType: {
@@ -33,7 +33,6 @@ const userSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
       unique: true
     },
     location: {

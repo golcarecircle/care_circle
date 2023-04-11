@@ -7,12 +7,26 @@ const SignupForm: React.FC = () => {
 	const router = useRouter();
 	const handleSubmit = async (formData: { [key: string]: string }) => {
 		console.log(formData);
+		const {fullName,email,password, confirmPassword} = formData;
+		if (!fullName || !email || !password || !confirmPassword) {
+			throw new Error("All fields are required");
+		}
+		if (password !== confirmPassword) {
+			throw new Error("Passwords do not match");
+		}
+		type Data = Omit<typeof formData, 'confirmPassword'>;
+		const dataSent: Data = {
+			fullName: formData.fullName,
+			email: formData.email,
+			password: formData.password
+		}
+		//sign up logic here
 		const res = await fetch('/api/auth/sign-up',{
 			method: 'POST',
 			headers:{
 				'Content-Type':'application/json'
 			},
-			body: JSON.stringify({...formData})
+			body: JSON.stringify({...dataSent})
 		})
   		const data = await res.json();
   		console.log(data.message,res.status);

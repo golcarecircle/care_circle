@@ -94,6 +94,7 @@ function DoctorDashboard() {
 export const getServerSideProps = wrapper.getServerSideProps(
     (store)=> async (context: GetServerSidePropsContext) => {
         const session= await getSession(context);
+        console.log(session);
         if (!session && session?.user?.isAdmin !==true) {
             return{
                 redirect:{
