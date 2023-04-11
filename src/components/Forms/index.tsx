@@ -13,9 +13,9 @@ interface FormInput {
 
 interface FormProps {
   children?: React.ReactNode;
-  onSubmit: (data: { [key: string]: string }) => void;
+  onSubmit: (data: { [key: string]: string }) => Promise<void>; // return Promise
   inputs: FormInput[];
-  buttonText: string; // added prop for dynamic button text
+  buttonText: string;
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit, inputs, buttonText, children }) => {
@@ -28,25 +28,24 @@ const Form: React.FC<FormProps> = ({ onSubmit, inputs, buttonText, children }) =
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => { // add async and Promise<void> type
     e.preventDefault();
-  
-    // Check if all fields are valid
     const form = e.currentTarget;
     const isValid = form.checkValidity();
     if (!isValid) {
-      // Handle invalid form
-
       form.reportValidity();
       return;
     }
-  
-    onSubmit(formData);
+    try {
+      await onSubmit(formData); // add await
+      window.location.assign("/dashboard/patient"); // redirect to dashboard on success
+    } catch (error) {
+      alert(error);
+    }
   };
   
-  
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       {inputs.map((input, index) => (
         <div key={index}>
           <label>{input.label}</label>
@@ -63,8 +62,14 @@ const Form: React.FC<FormProps> = ({ onSubmit, inputs, buttonText, children }) =
       ))}
       {children}
       <Button 
-        onClick={() => handleSubmit} 
-        text={buttonText} // use the buttonText prop to update the button text
+        onClick={async () => { // add async and try/catch to handle errors
+          try {
+            await handleSubmit;
+          } catch (error) {
+            console.log(error);
+          }
+        }}
+        text={buttonText}
         size="lg"
       />
     </form>

@@ -1,9 +1,30 @@
 import React from "react";
-import Form, {FormInput} from '@/components/Forms';
+import { useRouter } from "next/router";
+import Form, { FormInput } from "@/components/Forms";
 
 const SignInForm: React.FC = () => {
-  const handleSubmit = (formData: { [key: string]: string }) => {
-    console.log(formData);
+  const router = useRouter();
+
+  const handleSubmit = async (formData: { [key: string]: string }) => {
+    try {
+      if (!formData.email || !formData.password) {
+        throw new Error("Email and password are required");
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        throw new Error("Please enter a valid email address");
+      }
+
+      if (formData.password.length < 8) {
+        throw new Error("Password must be at least 8 characters long");
+      }
+
+      // If all checks pass, navigate to the dashboard
+      await router.push("/dashboard/patient");
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const inputs: FormInput[] = [
@@ -22,8 +43,8 @@ const SignInForm: React.FC = () => {
   ];
 
   return (
-    <Form onSubmit={handleSubmit} inputs={inputs} buttonText={"Sign In"} >
-      <p>forgot password?</p>
+    <Form onSubmit={handleSubmit} inputs={inputs} buttonText={"Sign In"}>
+      <p>Forgot password?</p>
     </Form>
   );
 };

@@ -5,7 +5,7 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   variant?: "outlined";
   text: string;
-  onClick: () => void;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: React.FC<ButtonProps> = ({
