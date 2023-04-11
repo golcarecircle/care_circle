@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import Form, { FormInput } from "@/components/Forms";
 
 const SignInForm: React.FC = () => {
@@ -20,8 +21,12 @@ const SignInForm: React.FC = () => {
         throw new Error("Password must be at least 8 characters long");
       }
 
-      //login logic
-    
+      //login logic here
+      const status = await signIn("credentials", {
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
+      });
 
       // If all checks pass, navigate to the dashboard
       await router.push("/dashboard/patient");

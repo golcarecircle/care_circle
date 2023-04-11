@@ -5,7 +5,6 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
     },
     userType: {
       type: String,
@@ -14,12 +13,10 @@ const userSchema = new mongoose.Schema(
     },
     sex: {
       type: String,
-      required: true,
       enum: ['MALE', 'FEMALE'],
     },
     age: {
       type: Number,
-      required: true,
     },
     email: {
       type: String,
@@ -32,16 +29,13 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: true,
       unique: true,
     },
     location: {
       type: String,
-      required: true,
     },
     dob: {
       type: Date,
-      required: true,
     },
     medicalRecords: [
       {

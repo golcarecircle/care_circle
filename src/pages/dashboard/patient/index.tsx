@@ -4,6 +4,8 @@ import styles from './dashboard.module.css'
 import { IoMdNotifications } from 'react-icons/io';
 import { appointment, dashboard, logout, messages, profile, settings} from '@/assets/icons';
 import UserDashboard from './pages/UserDashBoard';
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/react';
 
 interface PatientProps {
 
@@ -91,4 +93,22 @@ function dashboardNav() {
     </div>
 
   </div>;
+}
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
