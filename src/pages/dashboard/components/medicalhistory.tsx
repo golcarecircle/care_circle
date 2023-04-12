@@ -1,16 +1,38 @@
 import { FC, useState } from 'react';
 import styles from './medicalHistory.module.css';
 
+interface Prescription{
+    medicine_name: string;
+    dosage: string;
+    frequency: string;
+    duration: string;
+}
+
 interface Diagnosis {
   description: string;
-  prescription: string;
+  prescription: [
+    Prescription
+  ];
+  startDate: Date
+}
+
+interface Test {
+    name: string;
+    result: string;
 }
 
 interface MedicalHistoryProps {
   history: {
     date: string;
-    chiefComplaint: string;
+    hospital: string;
+    physcian: string
+    physcianNotes: string;
+    tests: [
+        Test
+    ];
+    treatmentPlan: string;
     diagnosis: Diagnosis;
+    treatmentStatus: string
   }[];
 }
 
@@ -41,8 +63,11 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({ history }) => {
           {history.map((item, index) => (
             <tr key={index} onClick={() => handleItemClick(index)}>
               <td>{item.date}</td>
-              <td>{item.chiefComplaint}</td>
+              <td>{item.hospital}</td>
+                <td>{item.physcian}</td>
+
               <td>{item.diagnosis.description}</td>
+              <td>{item.treatmentStatus}</td>
             </tr>
           ))}
         </tbody>
@@ -50,11 +75,9 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({ history }) => {
       {showModal && (
         <div className={styles.modal} onClick={handleCloseModal}>
           <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
-            <h2>{history[selectedItem].chiefComplaint}</h2>
-            <h3>Diagnosis:</h3>
-            <p>{history[selectedItem].diagnosis.description}</p>
-            <h3>Prescription:</h3>
-            <p>{history[selectedItem].diagnosis.prescription}</p>
+            <div className={styles.modal__header}>
+                <h1>Medical History</h1>
+            </div>
           </div>
         </div>
       )}
