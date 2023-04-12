@@ -5,12 +5,13 @@ import {
   NewsLetter,
   Features
 } from "./components";
-import { Footer } from "@/components";
+import { Footer, NavBar } from "@/components";
 
 
 export default function LandingPage() {
   return (
     <>
+      <NavBar />
       <HeroSection />
       <Features features={features}/>
       <NewsLetter />

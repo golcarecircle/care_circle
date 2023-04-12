@@ -1,4 +1,3 @@
-import {NavBar } from '@/components';
 import React from 'react';
 
 
@@ -9,7 +8,6 @@ type Props = {
 export default function Layout({ children }: Props) {
     return (
         <div>
-            <NavBar />
             {children} 
         </div>
     );
