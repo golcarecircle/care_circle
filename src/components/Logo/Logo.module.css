@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-items: center;
-  
 }
 
 .logo > svg {
@@ -40,9 +39,9 @@
 
 /* Added classes */
 .logo--small > svg {
-    margin-right: 4px;
-    width: 1.5rem;
-    height: 1.5rem;
+  margin-right: 4px;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .logo--small > .brand {
@@ -52,4 +51,3 @@
 .logo--large > .brand {
   font-size: 3rem;
 }
-  

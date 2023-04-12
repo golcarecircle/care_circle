@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
+};
 
 module.exports = {
   ...nextConfig,
@@ -12,13 +12,11 @@ module.exports = {
         destination: '/new-page',
         permanent: true,
       },
-    ]
+    ];
   },
   images: {
-    domains: [
-      "health.gov"
-    ]
-  }
-}
+    domains: ['health.gov'],
+  },
+};
 
 // next.config.js

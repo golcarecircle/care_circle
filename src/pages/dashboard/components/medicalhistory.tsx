@@ -1,38 +1,35 @@
 import { FC, useState } from 'react';
 import styles from './medicalHistory.module.css';
 
-interface Prescription{
-    medicine_name: string;
-    dosage: string;
-    frequency: string;
-    duration: string;
+interface Prescription {
+  medicine_name: string;
+  dosage: string;
+  frequency: string;
+  duration: string;
 }
 
 interface Diagnosis {
   description: string;
-  prescription: [
-    Prescription
-  ];
-  startDate: Date
+  code: string;
+  startDate: string;
+  prescription: [Prescription];
 }
 
 interface Test {
-    name: string;
-    result: string;
+  name: string;
+  result: string;
 }
 
 interface MedicalHistoryProps {
   history: {
     date: string;
     hospital: string;
-    physcian: string
+    physcian: string;
     physcianNotes: string;
-    tests: [
-        Test
-    ];
+    tests: [Test];
     treatmentPlan: string;
     diagnosis: Diagnosis;
-    treatmentStatus: string
+    treatmentStatus: string;
   }[];
 }
 
@@ -64,7 +61,7 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({ history }) => {
             <tr key={index} onClick={() => handleItemClick(index)}>
               <td>{item.date}</td>
               <td>{item.hospital}</td>
-                <td>{item.physcian}</td>
+              <td>{item.physcian}</td>
 
               <td>{item.diagnosis.description}</td>
               <td>{item.treatmentStatus}</td>
@@ -74,9 +71,12 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({ history }) => {
       </table>
       {showModal && (
         <div className={styles.modal} onClick={handleCloseModal}>
-          <div className={styles.modal__content} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={styles.modal__content}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className={styles.modal__header}>
-                <h1>Medical History</h1>
+              <h1>Medical History</h1>
             </div>
           </div>
         </div>

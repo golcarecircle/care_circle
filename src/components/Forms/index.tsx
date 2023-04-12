@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Button from "../Btn";
-import styles from './Form.module.css'
+import React, { useState } from 'react';
+import Button from '../Btn';
+import styles from './Form.module.css';
 
 interface FormInput {
   name: string;
   label?: string;
-  type: "text" | "email" | "password";
+  type: 'text' | 'email' | 'password';
   value?: string;
   placeholder?: string;
-  required: boolean
+  required: boolean;
 }
 
 interface FormProps {
@@ -18,7 +18,12 @@ interface FormProps {
   buttonText: string;
 }
 
-const Form: React.FC<FormProps> = ({ onSubmit, inputs, buttonText, children }) => {
+const Form: React.FC<FormProps> = ({
+  onSubmit,
+  inputs,
+  buttonText,
+  children,
+}) => {
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +33,10 @@ const Form: React.FC<FormProps> = ({ onSubmit, inputs, buttonText, children }) =
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => { // add async and Promise<void> type
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    // add async and Promise<void> type
     e.preventDefault();
     const form = e.currentTarget;
     const isValid = form.checkValidity();
@@ -38,12 +46,12 @@ const Form: React.FC<FormProps> = ({ onSubmit, inputs, buttonText, children }) =
     }
     try {
       await onSubmit(formData); // add await
-      window.location.assign("/dashboard/patient"); // redirect to dashboard on success
+      window.location.assign('/dashboard/patient'); // redirect to dashboard on success
     } catch (error) {
       alert(error);
     }
   };
-  
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       {inputs.map((input, index) => (
@@ -61,8 +69,9 @@ const Form: React.FC<FormProps> = ({ onSubmit, inputs, buttonText, children }) =
         </div>
       ))}
       {children}
-      <Button 
-        onClick={async () => { // add async and try/catch to handle errors
+      <Button
+        onClick={async () => {
+          // add async and try/catch to handle errors
           try {
             await handleSubmit;
           } catch (error) {

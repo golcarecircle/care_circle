@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      unique: true
+      unique: true,
     },
     location: {
       type: String,
@@ -49,29 +49,31 @@ const userSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-userSchema.methods.addMedicalRecord = async function (medicalRecord: IReport): Promise<void> {
-    this.medicalRecords.push(medicalRecord._id);
-    await this.save();
+userSchema.methods.addMedicalRecord = async function (
+  medicalRecord: IReport,
+): Promise<void> {
+  this.medicalRecords.push(medicalRecord._id);
+  await this.save();
 };
 
 export interface IUser extends Document {
-    name: string;
-    userType: string;
-    sex: string;
-    age: number;
-    email: string;
-    password: string;
-    phone: string;
-    location: string;
-    dob: Date;
-    image: string;
-    createdAt: Date;
-    updatedAt: Date;
-    medicalRecords: mongoose.Types.ObjectId[];
-    addMedicalRecord(medicalRecord: IReport): Promise<void>;
+  name: string;
+  userType: string;
+  sex: string;
+  age: number;
+  email: string;
+  password: string;
+  phone: string;
+  location: string;
+  dob: Date;
+  image: string;
+  createdAt: Date;
+  updatedAt: Date;
+  medicalRecords: mongoose.Types.ObjectId[];
+  addMedicalRecord(medicalRecord: IReport): Promise<void>;
 }
 let UserModel: mongoose.Model<IUser>;
 try {

@@ -1,43 +1,48 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 export interface IAdmin extends mongoose.Document {
-    role: boolean;
-    fullName: string;
-    email: string;
-    password: string;
-    staffId: string;
-    hospital: string;
-    appointments: mongoose.Types.ObjectId[];
+  role: boolean;
+  fullName: string;
+  email: string;
+  password: string;
+  staffId: string;
+  hospital: string;
+  appointments: mongoose.Types.ObjectId[];
 }
-const adminSchema = new mongoose.Schema<IAdmin>({
+const adminSchema = new mongoose.Schema<IAdmin>(
+  {
     fullName: {
-        type: String,
+      type: String,
     },
     email: {
-        type: String,
-        required: true,
-        unique: true,
+      type: String,
+      required: true,
+      unique: true,
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     role: {
-        type: Boolean,
+      type: Boolean,
     },
-    staffId:{
-        type: String,
-        unique: true
+    staffId: {
+      type: String,
+      unique: true,
     },
-    hospital:{
-        type: String,
-        required: true,
-        enum:['KENYATTA HOSPITAL','NAIROBI HOSPITAL']
+    hospital: {
+      type: String,
+      required: true,
+      enum: ['KENYATTA HOSPITAL', 'NAIROBI HOSPITAL'],
     },
-    appointments: [{
+    appointments: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Appointment'
-    }]
-},{minimize: false})
+        ref: 'Appointment',
+      },
+    ],
+  },
+  { minimize: false },
+);
 let AdminModel: mongoose.Model<IAdmin>;
 try {
   // Try to get the existing model from mongoose

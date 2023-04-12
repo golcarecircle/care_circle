@@ -1,41 +1,52 @@
-import MedicalHistory from '@/pages/dashboard/components/medicalhistory'
-import { FC } from 'react'
-import styles from './medHistory.module.css'
+import MedicalHistory from '@/pages/dashboard/components/medicalhistory';
+import { FC } from 'react';
+import styles from './medHistory.module.css';
 
-interface MedHistoryProps {
-  
-}
+interface MedHistoryProps {}
 
 const MedHistory: FC<MedHistoryProps> = ({}) => {
-  return <div className={styles.medical__history}>
-    <div className={styles.medical__history__container}>
+  return (
+    <div className={styles.medical__history}>
+      <div className={styles.medical__history__container}>
         <div className={styles.medical__history__header}>
-            <h1>Medical History</h1>
+          <h1>Medical History</h1>
         </div>
         <div className={styles.medical__history__body}>
-            <MedicalHistory 
+          <MedicalHistory
             history={[
-                {
-                    date: '2022-04-12',
-                    chiefComplaint: 'Headache',
-                    diagnosis: {
-                      description: 'Migraine with aura',
-                      prescription: 'Sumatriptan 100mg',
-                    },
-                  },
+              {
+                date: '2022-04-12',
+                hospital: 'kenyatta',
+                physcian: 'Dr. John Doe',
+                physcianNotes: 'sdfuyaifh',
+                tests: [
                   {
-                    date: '2022-05-15',
-                    chiefComplaint: 'Stomach pain',
-                    diagnosis: {
-                      description: 'Gastritis',
-                      prescription: 'Omeprazole 20mg',
-                    },
+                    name: 'Blood Test',
+                    result: 'Positive for mps',
                   },
-            ]} 
-            />
+                ],
+                treatmentPlan: 'sdfuyaifh',
+                diagnosis: {
+                  description: 'Malaria',
+                  startDate: '2022-04-12',
+                  code: 'MPS',
+                  prescription: [
+                    {
+                      medicine_name: 'Paracetamol',
+                      dosage: '2 tablets',
+                      frequency: 'twice a day',
+                      duration: '2 weeks',
+                    },
+                  ],
+                },
+                treatmentStatus: 'Completed',
+              },
+            ]}
+          />
         </div>
+      </div>
     </div>
-  </div>
-}
+  );
+};
 
-export default MedHistory
+export default MedHistory;

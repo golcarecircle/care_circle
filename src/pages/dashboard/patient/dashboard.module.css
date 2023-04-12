@@ -1,25 +1,23 @@
-.dashboard{
-    height: 100vh;
-    width: 100vw;
-    background: #14162E;
-    backdrop-filter: blur(61.448px);
+.dashboard {
+  height: 100vh;
+  width: 100vw;
+  background: #14162e;
+  backdrop-filter: blur(61.448px);
 }
 
-.dashboard__container{
-    height: 100%;
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
+.dashboard__container {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
-
-
 
 .main {
-    height: 100%;
-    width: calc(100% - 4rem);
-    display: flex;
-    flex-direction: column;
-    background: #F2F4F5;
-    border-radius: 2rem;
+  height: 100%;
+  width: calc(100% - 4rem);
+  display: flex;
+  flex-direction: column;
+  background: #f2f4f5;
+  border-radius: 2rem;
 }

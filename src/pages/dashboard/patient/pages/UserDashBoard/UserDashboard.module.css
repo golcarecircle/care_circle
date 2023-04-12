@@ -1,16 +1,16 @@
-.dashboard{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.dashboard {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.dashboard__container{
-    height: 100%;
-    width: 100%;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
+.dashboard__container {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }

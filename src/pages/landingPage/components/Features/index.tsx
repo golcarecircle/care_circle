@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import Feature from "../Feature";
+import React, { FC } from 'react';
+import Feature from '../Feature';
 
 interface FeaturesProps {
   features: {

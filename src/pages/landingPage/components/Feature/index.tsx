@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import styles from "./Feature.module.css";
+import React, { FC } from 'react';
+import styles from './Feature.module.css';
 
 interface FeatureProps {
   src: string;
@@ -14,8 +14,8 @@ const Feature: FC<FeatureProps> = ({
   featureText,
   reverseOrder = false,
 }) => {
-  const featureContainerClass =  `${styles.feature__container} ${
-    reverseOrder ? styles.reverse: ""
+  const featureContainerClass = `${styles.feature__container} ${
+    reverseOrder ? styles.reverse : ''
   }`;
   return (
     <section className={styles.feature}>

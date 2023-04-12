@@ -1,4 +1,3 @@
-
 .button {
   padding: 8px 16px;
   border: none;
@@ -9,14 +8,13 @@
   font-family: 'Satoshi';
   font-style: normal;
 
-
   cursor: pointer;
 }
 
 .button .outlined {
   background-color: #fff;
-  color: #4CAF50;
-  border: 2px solid #4CAF50;
+  color: #4caf50;
+  border: 2px solid #4caf50;
 }
 
 .button.sm {
@@ -34,4 +32,3 @@
   font-size: 1.2rem;
   width: 100%;
 }
-

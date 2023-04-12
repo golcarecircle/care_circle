@@ -1,8 +1,8 @@
-import React, { FC, useState, useEffect } from "react";
-import styles from "./NavBar.module.css";
-import Link from "next/link";
-import Button from "../Btn";
-import Logo from "../Logo";
+import React, { FC, useState, useEffect } from 'react';
+import styles from './NavBar.module.css';
+import Link from 'next/link';
+import Button from '../Btn';
+import Logo from '../Logo';
 
 const NavBar: FC = () => {
   const [visible, setVisible] = useState(true);
@@ -14,39 +14,46 @@ const NavBar: FC = () => {
       const currentScrollPos = window.pageYOffset;
 
       setVisible(
-        (prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 70) ||
-          currentScrollPos < 10
+        (prevScrollPos > currentScrollPos &&
+          prevScrollPos - currentScrollPos > 70) ||
+          currentScrollPos < 10,
       );
 
       prevScrollPos = currentScrollPos;
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className={visible ? styles.navCont : `${styles.navCont} ${styles.scrolled}`}>
+    <nav
+      className={
+        visible ? styles.navCont : `${styles.navCont} ${styles.scrolled}`
+      }
+    >
       <div className={styles.nav}>
-        <Link href={"/"}>
-          <Logo size="medium"/>
+        <Link href={'/'}>
+          <Logo size="medium" />
         </Link>
-        
+
         <ul className={styles.links}>
           <li>
-            <Link href={"/"}>Home</Link>
+            <Link href={'/'}>Home</Link>
           </li>
           <li>
-            <Link href={"/about"}>About</Link>
+            <Link href={'/about'}>About</Link>
           </li>
           <li>
-            <Link href={"/how-to-use"}>How to Use</Link>
+            <Link href={'/how-to-use'}>How to Use</Link>
           </li>
           <li>
-          <Button onClick={() => {
-            window.location.href = '/auth';
-          }} text={"Get Started"} />
-
+            <Button
+              onClick={() => {
+                window.location.href = '/auth';
+              }}
+              text={'Get Started'}
+            />
           </li>
         </ul>
       </div>

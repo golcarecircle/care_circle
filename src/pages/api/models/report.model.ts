@@ -1,18 +1,19 @@
-import mongoose,{Types, Schema, Model} from "mongoose";
+import mongoose, { Types, Schema, Model } from 'mongoose';
 export interface IReport extends mongoose.Document {
-    _id: string;
-    patientId: Types.ObjectId;
-    name: string;
-    description: string;
-    startedDate: Date;
-    currentCondition: string | null;
-    createdAt: Date;
-    updatedAt: Date;
-    diagnosis: string;
-    result: string[];
-    dose: string[];
+  _id: string;
+  patientId: Types.ObjectId;
+  name: string;
+  description: string;
+  startedDate: Date;
+  currentCondition: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  diagnosis: string;
+  result: string[];
+  dose: string[];
 }
-const ReportSchema = new Schema<IReport>({
+const ReportSchema = new Schema<IReport>(
+  {
     name: { type: String, required: true },
     description: { type: String, required: true },
     startedDate: { type: Date, required: true },
@@ -20,12 +21,14 @@ const ReportSchema = new Schema<IReport>({
     diagnosis: { type: String, required: false },
     result: [{ type: String, required: false }],
     dose: [{ type: String, required: true }],
-    patientId: { type: Schema.Types.ObjectId, required: true, ref: "Users" },
-},{timestamps: true});
-let RecordsModel : Model<IReport>;
-try{
-    RecordsModel = mongoose.model<IReport>('MedicalRecords');
-}catch(err){
-    RecordsModel = mongoose.model<IReport>("MedicalRecords", ReportSchema);
+    patientId: { type: Schema.Types.ObjectId, required: true, ref: 'Users' },
+  },
+  { timestamps: true },
+);
+let RecordsModel: Model<IReport>;
+try {
+  RecordsModel = mongoose.model<IReport>('MedicalRecords');
+} catch (err) {
+  RecordsModel = mongoose.model<IReport>('MedicalRecords', ReportSchema);
 }
 export default RecordsModel;
