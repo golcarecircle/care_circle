@@ -4,8 +4,8 @@ import styles from './dashboard.module.css';
 import UserDashboard from './pages/UserDashBoard';
 import { GetServerSideProps } from 'next';
 import { getSession, useSession } from 'next-auth/react';
-import SideBar from './pages/UserDashBoard/components/sideBar/sideBar';
-import DashboardNav from './pages/UserDashBoard/components/nav/dashboardNav';
+import SideBar from './pages/components/sideBar/sideBar';
+import DashboardNav from './pages/components/nav/dashboardNav';
 import MedHistory from './pages/medHistory/medHistory';
 import Settings from './pages/settings/settings';
 

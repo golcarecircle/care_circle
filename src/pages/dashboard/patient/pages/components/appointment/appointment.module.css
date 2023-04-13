@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap');
+
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 2 3 #000000;
+  border-radius: 1rem;
+  background: #ffffff;
+  margin-top: 1rem;
+}
+
+.card__header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card__header h4 {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: -0.01em;
+  color: #000000;
+}
+
+
+
+.card__body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.card__body .appointment__details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.appointment__details{
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.appointment__details:last-child{
+    border-bottom: none;
+}
+
+.appointment__details__item div,
+.appointment__details p{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.01em;
+    color: #000000;
+    margin-bottom: 0.5rem;
+}
+
+.card h5{
+    font-family: 'Poppins';
+    font-style: bold;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 12px;
+    letter-spacing: -0.01em;
+    color: #000000;
+    margin-bottom: 0.8rem;
+}
+
+.appointment__details__item{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.6rem;
+    border-radius: .5rem;
+}
+
+.appointment__details__item:hover{
+    background: #f5f5f5;
+}
+
+.appointment__details__item div{
+    border-right: 1px solid grey;
+    width: 20%;
+}
+
+.appointment__details__item div:last-child{
+    border-right: none;
+}
+
+.appointment__details__item div:first-child {
+    font-family: 'Tilt Prism', cursive;    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 16px;
+    letter-spacing: -0.01em;
+    color: #000000;
+}

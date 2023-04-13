@@ -1,4 +1,6 @@
 import { FC, useState } from 'react';
+import Modal from '../patient/pages/components/modal/modal';
+import TreatmentDetails from '../patient/pages/components/treatmentDetails';
 import styles from './medicalHistory.module.css';
 
 interface Prescription {
@@ -34,31 +36,31 @@ interface MedicalHistoryProps {
 }
 
 const MedicalHistory: FC<MedicalHistoryProps> = ({ history }) => {
-  const [selectedItem, setSelectedItem] = useState(-1);
-  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleItemClick = (index: number) => {
-    setSelectedItem(index);
-    setShowModal(true);
+  const OpenModal = () => {
+    setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <div className={styles.medicalHistory}>
-      <table className={styles.medicalHistory__table}>
+      <table className="w-full text-gray-700 ">
         <thead>
           <tr>
             <th>Date</th>
-            <th>Chief Complaint</th>
-            <th>Diagnosis</th>
+            <th>hospital</th>
+            <th>physcian</th>
+            <th>description</th>
+            <th>treatment status</th>
           </tr>
         </thead>
         <tbody>
           {history.map((item, index) => (
-            <tr key={index} onClick={() => handleItemClick(index)}>
+            <tr key={index} onClick={OpenModal}>
               <td>{item.date}</td>
               <td>{item.hospital}</td>
               <td>{item.physcian}</td>
@@ -69,18 +71,11 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({ history }) => {
           ))}
         </tbody>
       </table>
-      {showModal && (
-        <div className={styles.modal} onClick={handleCloseModal}>
-          <div
-            className={styles.modal__content}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className={styles.modal__header}>
-              <h1>Medical History</h1>
-            </div>
-          </div>
-        </div>
-      )}
+      <Modal isOpen={isModalOpen} onClose={closeModal} >
+        <TreatmentDetails 
+          history={history}
+        />
+      </Modal>
     </div>
   );
 };
