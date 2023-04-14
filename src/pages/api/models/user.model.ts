@@ -1,22 +1,33 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document, get } from 'mongoose';
 import { IReport } from './report.model';
-
-const userSchema = new mongoose.Schema(
+interface IAdmin extends mongoose.Document {
+  _id: string
+  role: boolean;
+  fullName: string;
+  sex?: 'MALE'| 'FEMALE'
+  age?: number
+  userType: 'PATIENT' | 'DOCTOR'
+  email: string;
+  password: string;
+  staffId?: string;
+  phone?: string;
+  image?: string;
+  location?: string;
+  dob?: Date
+  appointments?: mongoose.Types.ObjectId[];
+  medicalRecords?: string[]
+}
+const userSchema = new mongoose.Schema<IAdmin>(
   {
     fullName: {
       type: String,
+      required: true,
     },
     userType: {
       type: String,
       enum: ['PATIENT', 'DOCTOR'],
       default: 'PATIENT',
-    },
-    sex: {
-      type: String,
-      enum: ['MALE', 'FEMALE'],
-    },
-    age: {
-      type: Number,
+      required: true,
     },
     email: {
       type: String,
@@ -30,26 +41,15 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: String,
       unique: true,
+      required: false
     },
     image: {
       type: String,
-      unique: true,
+      unique: false,
+      required: false
     },
-    location: {
-      type: String,
-    },
-    dob: {
-      type: Date,
-    },
-    medicalRecords: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'MedicalRecords',
-        default: [],
-      },
-    ],
   },
-  { timestamps: true },
+  { timestamps: true, strict: false },
 );
 
 userSchema.methods.addMedicalRecord = async function (
@@ -63,11 +63,11 @@ export interface IUser extends Document {
   name: string;
   userType: string;
   sex: string;
-  age: number;
+  age?: number;
   email: string;
   password: string;
   phone: string;
-  location: string;
+  location?: string;
   dob: Date;
   image: string;
   createdAt: Date;
@@ -75,14 +75,12 @@ export interface IUser extends Document {
   medicalRecords: mongoose.Types.ObjectId[];
   addMedicalRecord(medicalRecord: IReport): Promise<void>;
 }
-let UserModel: mongoose.Model<IUser>;
+let UserModel: mongoose.Model<IAdmin>;
 try {
   // Try to get the existing model from mongoose
-  UserModel = mongoose.model<IUser>('User');
+  UserModel = mongoose.model<IAdmin>('Users');
 } catch {
   // If the model doesn't exist, define it
-  UserModel = mongoose.model<IUser>('User', userSchema);
+  UserModel = mongoose.model<IAdmin>('Users', userSchema);
 }
 export default UserModel;
-
-// export const UserModel = mongoose.model<IUser>('User', userSchema);
