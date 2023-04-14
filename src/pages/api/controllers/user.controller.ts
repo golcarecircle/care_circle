@@ -29,7 +29,8 @@ export const createUser = async (user: UserX) => {
     email: user.email,
   });
   if (finduser) throw new Error('User Found, Change Email');
-  if(user.userType==='DOCTOR'){
+  let userType = user.userType?? 'PATIENT';
+  if(userType==='DOCTOR'){
     console.log('We are adding a doctor');
     let userAdded: UserX = {
       ...user,
