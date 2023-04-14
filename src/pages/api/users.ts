@@ -4,23 +4,26 @@ import {
   getAllUser,
   getUserById,
   updateUser,
+  createUser
 } from './controllers/user.controller';
 
 import connectDB from './db';
 export type IUser = {
   _id?: string;
-  name: string;
+  fullName: string;
   userType: string;
-  sex: string;
-  age: number;
+  sex?: string;
+  age?: number;
   email: string;
   password: string;
-  phone: string;
-  location: string;
-  dob: Date;
+  phone?: string;
+  location?: string;
+  dob?: Date;
   image: string;
   createdAt?: Date;
   updatedAt?: Date;
+  appointments?:string[]
+  hospital?: string
 };
 export type UserX = Omit<IUser, 'createdAt' | 'updatedAt'>;
 export default async function handler(
@@ -36,15 +39,28 @@ export default async function handler(
         res.status(200).json(user);
         break;
       }
-      const users: IUser[] = await getAllUser();
+      const users = await getAllUser();
+      if (!users) {
+        throw new Error('No user found')
+      }
       res.status(200).json(users);
       break;
     case 'POST':
       const user: IUser = req.body;
       console.log(user);
-      const updatedUpdatedUser = await updateUser(user._id as string, user);
+      const updatedUpdatedUser = await createUser(user);
+      console.log(updatedUpdatedUser);
       if (updatedUpdatedUser) {
         res.status(200).json(updatedUpdatedUser);
+      } else {
+        res.status(400).json({ message: 'Error updating user' });
+      }
+      break;
+    case 'PUT':
+      const { id: id2, ...user2 } = req.body;
+      const updatedUser = await updateUser(id2 as string, user2 as IUser);
+      if (updatedUser) {
+        res.status(200).json(updatedUser);
       } else {
         res.status(400).json({ message: 'Error updating user' });
       }
