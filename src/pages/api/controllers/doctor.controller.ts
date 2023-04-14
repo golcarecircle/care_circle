@@ -8,7 +8,7 @@ export const getADoctor = async (doctorId: string) => {
   const doctor = await AdminModel.findById(doctorId);
   return doctor;
 };
-export const getDoctorByStaffID = async (staffId: string) => {
+export const getDoctorByStaffID = async (staffId: string): Promise<IAdmin | null> => {
   const doctor = await AdminModel.find({
     staffId,
   });

@@ -6,6 +6,7 @@ import { IUser } from '../users';
 import bcrypt from 'bcryptjs';
 import { NextApiHandler } from 'next';
 import { getDoctorByStaffID } from '../controllers/doctor.controller';
+import { IAdmin } from '../models/doctor.model';
 interface Credentials {
   email: string;
   password: string;
@@ -18,6 +19,7 @@ export interface MySession extends Session {
     phone: string;
     isAdmin: boolean;
     image: string;
+    userType?: 'PATIENT' | 'DOCTOR'
   };
 }
 interface MyUser extends User {
@@ -26,6 +28,9 @@ interface MyUser extends User {
   email: string;
   phone: string;
   isAdmin: boolean;
+  userType?: 'PATIENT' | 'DOCTOR';
+  image: string;
+
 }
 export const options: NextAuthOptions = {
   session: {
@@ -64,7 +69,7 @@ export const options: NextAuthOptions = {
           staffId: string;
           password: string;
         };
-        const doctor = await getDoctorByStaffID(staffId);
+        const doctor: IAdmin | null = await getDoctorByStaffID(staffId);
         if (!doctor) {
           throw new Error('No Doctor Found');
         }
@@ -74,7 +79,7 @@ export const options: NextAuthOptions = {
         }
         return {
           id: doctor._id,
-          name: doctor.name,
+          name: doctor.fullName,
           email: doctor.email,
           phone: doctor.phone,
           isAdmin: true,
@@ -97,14 +102,26 @@ export const options: NextAuthOptions = {
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-          throw new Error('Password doesnt Match');
+          throw new Error('Password does not match');
+        }
+        if (user.userType === 'DOCTOR') {
+          return {
+            id: user._id,
+            name: user.fullName,
+            email: user.email,
+            phone: user.phone,
+            image: user.image,
+            userType: user.userType,
+          };
         }
         return {
           id: user._id,
-          name: user.name,
+          name: user.fullName,
           email: user.email,
           phone: user.phone,
           isAdmin: false,
+          image: user.image,
+          userType: user.userType,
         };
       },
     }),
