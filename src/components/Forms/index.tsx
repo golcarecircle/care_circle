@@ -5,7 +5,7 @@ import styles from './Form.module.css';
 interface FormInput {
   name: string;
   label?: string;
-  type: 'text' | 'email' | 'password';
+  type: 'text' | 'email' | 'password' | 'tel';
   value?: string;
   placeholder?: string;
   required: boolean;

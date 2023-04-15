@@ -45,7 +45,6 @@ const userSchema = new mongoose.Schema<IAdmin>(
     },
     image: {
       type: String,
-      unique: false,
       required: false
     },
   },

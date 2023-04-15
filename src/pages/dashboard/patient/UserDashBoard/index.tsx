@@ -1,7 +1,8 @@
+import DashboardMain from '@/pages/dashboard/components/dashboardmain';
+import ProfileCard from '@/pages/dashboard/components/profile';
 import { FC } from 'react';
 import styles from './UserDashboard.module.css';
-import ProfileCard from '../components/profile';
-import DashboardMain from '../components/dashboardmain';
+
 
 interface UserDashboardProps {}
 

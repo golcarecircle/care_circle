@@ -3,16 +3,20 @@ import type { AppProps } from 'next/app';
 import { SessionProvider } from 'next-auth/react';
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
-import { wrapper } from '@/redux';
-import { HealthTipsProvider } from '@/context/healthTips.context';
-import Layout from '@/util/layout';
+import MainLayout from '@/util/Layout';
+import DashboardLayout from './dashboard/layout';
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-function App({ Component, pageProps }: AppPropsWithLayout) {
+
+function App({ Component, pageProps, router }: AppPropsWithLayout) {
+  const isDashboardPage = router.pathname.startsWith('/dashboard');
+  const Layout = isDashboardPage ? DashboardLayout : MainLayout;
+  
   return (
     <SessionProvider session={pageProps.session}>
       <Layout>
@@ -21,4 +25,5 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
     </SessionProvider>
   );
 }
+
 export default App;

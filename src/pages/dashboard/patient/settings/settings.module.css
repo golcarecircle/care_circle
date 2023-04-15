@@ -1,0 +1,59 @@
+.settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    }
+    
+    .settings__container {
+    width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .settings__container h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    }
+    
+    .settings__container form {
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .settings__container label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    }
+    
+    .settings__container input,
+    .settings__container textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    }
+    
+    .settings__container textarea {
+    height: 150px;
+    }
+    
+    .settings__container button[type='submit'] {
+    background-color: #008cba;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    }
+    
+    .settings__container button[type='submit']:hover {
+    background-color: #006a8e;
+    }

@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions, Session, User } from 'next-auth';
+import NextAuth, { DefaultSession, NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { getUserByEmail } from '../controllers/user.controller';
@@ -7,31 +7,22 @@ import bcrypt from 'bcryptjs';
 import { NextApiHandler } from 'next';
 import { getDoctorByStaffID } from '../controllers/doctor.controller';
 import { IAdmin } from '../models/doctor.model';
+
 interface Credentials {
   email: string;
   password: string;
 }
-export interface MySession extends Session {
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    phone: string;
-    isAdmin: boolean;
-    image: string;
-    userType?: 'PATIENT' | 'DOCTOR'
-  };
-}
-interface MyUser extends User {
+
+interface Session extends DefaultSession {
   id: string;
-  name: string;
-  email: string;
   phone: string;
   isAdmin: boolean;
-  userType?: 'PATIENT' | 'DOCTOR';
+  userType: 'PATIENT' | 'DOCTOR';
+  name: string;
+  email: string;
   image: string;
-
 }
+
 export const options: NextAuthOptions = {
   session: {
     strategy: 'jwt',
@@ -45,11 +36,12 @@ export const options: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token) {
-        session.user = token.user as MyUser;
+        session.user = token.user as Session['user'];
       }
       return Promise.resolve(session);
     },
   },
+  
   secret: process.env.MONGODB_URI,
   providers: [
     GoogleProvider({

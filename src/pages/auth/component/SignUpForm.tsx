@@ -17,6 +17,7 @@ const SignupForm: React.FC = () => {
     type Data = Omit<typeof formData, 'confirmPassword'>;
     const dataSent: Data = {
       fullName: formData.fullName,
+      phone: formData.phone,
       email: formData.email,
       password: formData.password,
     };
@@ -48,6 +49,12 @@ const SignupForm: React.FC = () => {
       name: 'fullName',
       type: 'text',
       placeholder: 'Enter your fullnames',
+      required: true,
+    },
+    {
+      name: 'phone',
+      type: 'tel',
+      placeholder: 'Enter your phone number',
       required: true,
     },
     {

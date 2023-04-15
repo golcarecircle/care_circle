@@ -1,4 +1,3 @@
-import Layout from '@/util/layout';
 import { FC, useState } from 'react';
 import SignupForm from './component/SignUpForm';
 import SignInForm from './component/SignInForm';
@@ -16,7 +15,6 @@ const Auth: FC<AuthProps> = ({}) => {
   };
 
   return (
-    <Layout>
       <div className={styles.auth}>
         <div className={styles.auth__container}>
           <div className={styles.auth__text}>
@@ -57,7 +55,6 @@ const Auth: FC<AuthProps> = ({}) => {
           </div>
         </div>
       </div>
-    </Layout>
   );
 };
 

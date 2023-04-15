@@ -46,7 +46,7 @@ const DashboardNav: FC<DashboardNavProps> = ({ session }) => {
               <div
                 className={styles.main__nav__container__right__profile__name}
               >
-                <p>{session.user?.email}</p>
+                <p>{session.user?.name}</p>
               </div>
             </div>
           </div>
