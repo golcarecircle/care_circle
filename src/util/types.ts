@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
-import { type } from 'os';
 import { ReactElement, ReactNode } from 'react';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -11,57 +10,63 @@ export type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-interface User {
+
+type Patient = {
+  id: string;
+  name: string;
+  profilePic: string;
+  age: number;
+  gender: string;
+  phone: string;
+  email: string;
+  address: string;
+  notes: string;
+  medicalHistory?: MedicalHistory[];
+  appointment?: Appointment[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+
+type Doctor = {
   id: string;
   name: string;
   email: string;
   phone: string;
   address: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Patient extends User {
-  id: string;
-  medicalHistory: MedicalHistory
-  appointment: Appointment[]
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface Doctor extends User{
-  id: string;
   hospital: Hospital;
   createdAt: string;
   updatedAt: string;
 }
 
-interface Hospital{
+type Hospital = {
   id: string;
   name: string;
   address: string;
-  hospitalAdmin: User
   createdAt: string;
   updatedAt: string;
 }
 
-interface Appointment {
+type Appointment = {
   id: string;
+  doctorId: string;
+  patientId: string;
+  patientName: string;
+  type: string;
   date: string;
-  patient: Patient;
-  doctor: Doctor;
-  symptoms: Symptoms[];
-  createdAt: string;
-  updatedAt: string;
+  reason?: string;
+  status?: "scheduled" | "canceled" | "completed";
+  notes?: string;
 }
 
-interface Symptoms {
+
+type Symptoms = {
   id: string;
   descriprion: string
 }
 
 
-interface Treatment {
+type Treatment = {
   id: string;
   date: Date;
   time: string;
@@ -72,7 +77,7 @@ interface Treatment {
   updatedAt: string;
 }
 
-interface Diagnosis {
+type Diagnosis = {
   id: string;
   name: string;
   description: string;
@@ -81,7 +86,7 @@ interface Diagnosis {
   updatedAt: string;
 }
 
-interface Consultation {
+type Consultation = {
   id: string;
   date: string;
   physcian: Doctor;
@@ -91,13 +96,13 @@ interface Consultation {
   diagnosis: Diagnosis[];
 }
 
-interface Labs {
+type Labs = {
   id: string;
   orderBy: Doctor;
   tests: Test[]
 }
 
-interface Test {
+type Test = {
   id: string;
   name: string;
   results: string;
@@ -105,7 +110,7 @@ interface Test {
   updatedAt: string;
 }
 
-interface MedicalHistory {
+type MedicalHistory = {
   id: string;
   userId: string;
   consultation: Consultation[];
@@ -113,7 +118,7 @@ interface MedicalHistory {
   updatedAt: string;
 }
 
-interface Prescription {
+type Prescription = {
   id: string;
   medicineName: string;
   dosage: string;
@@ -122,7 +127,6 @@ interface Prescription {
 }
 
 export type {
-  User,
   Patient,
   Doctor,
   Hospital,
@@ -134,7 +138,7 @@ export type {
   Labs,
   Test,
   MedicalHistory,
-  Prescription,
-};
+  Prescription
+}
 
 

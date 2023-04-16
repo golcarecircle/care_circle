@@ -1,0 +1,31 @@
+.container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.heading {
+  margin-top: 0;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  margin-bottom: 5px;
+}
+
+.date {
+  font-weight: bold;
+}
+
+.patient {
+  margin-left: 10px;
+}
+  
+.message {
+  color: #888;
+}
+  

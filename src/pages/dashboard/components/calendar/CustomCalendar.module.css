@@ -1,0 +1,24 @@
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    font-family: sans-serif;
+    color: #333;
+  }
+  
+  .heading {
+    margin-bottom: 1rem;
+  }
+  
+  .react-calendar__tile {
+    font-size: 14px;
+  }
+  
+  .tile {
+    position: relative;
+    font: .5em sans-serif;
+    width: 1em !important;
+  }
+  
+
+  
