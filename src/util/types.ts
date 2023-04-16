@@ -30,13 +30,15 @@ type Patient = {
 
 type Doctor = {
   id: string;
-  name: string;
+  userType: 'DOCTOR'
+  fullName: string;
   email: string;
   phone: string;
   address: string;
   hospital: Hospital;
   createdAt: string;
   updatedAt: string;
+  appointments: Appointment[]
 }
 
 type Hospital = {
@@ -109,7 +111,9 @@ type Test = {
   createdAt: string;
   updatedAt: string;
 }
-
+/*
+  NedicalHistory -> Consultation -> Symptoms -> Diagnosis(Cough) -> Prescription(Medicines)
+*/
 type MedicalHistory = {
   id: string;
   userId: string;
