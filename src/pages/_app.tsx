@@ -5,7 +5,7 @@ import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 import MainLayout from '@/util/Layout';
 import DashboardLayout from './dashboard/layout';
-
+import { wrapper } from '@/redux';
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
@@ -26,4 +26,4 @@ function App({ Component, pageProps, router }: AppPropsWithLayout) {
   );
 }
 
-export default App;
+export default wrapper.withRedux(App);
