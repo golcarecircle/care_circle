@@ -9,7 +9,8 @@ export const getAllUser = async () => {
   return users;
 };
 export const getUserById = async (id: string) => {
-  const user: UserX | null = await UserModel.findById(id);
+  
+  const user: UserX | null = await UserModel.findById(id).populate('appointments','medicalRecords');
   if (!user) throw new Error('No User Found');
   return user;
 };
