@@ -8,6 +8,7 @@ import {
 } from './controllers/user.controller';
 
 import connectDB from './db';
+import { Appointment, MedicalHistory } from '@/util/types';
 export type IUser = {
   _id?: string;
   fullName: string;
@@ -22,7 +23,8 @@ export type IUser = {
   image: string;
   createdAt?: Date;
   updatedAt?: Date;
-  appointments?:string[]
+  appointments?: Appointment[]
+  medicalRecords?: MedicalHistory[] 
   hospital?: string
 };
 export type UserX = Omit<IUser, 'createdAt' | 'updatedAt'>;
@@ -35,7 +37,7 @@ export default async function handler(
     case 'GET':
       const { id } = req.query;
       if (id) {
-        const user: IUser = await getUserById(id as string);
+        const user = await getUserById(id as string);
         res.status(200).json(user);
         break;
       }

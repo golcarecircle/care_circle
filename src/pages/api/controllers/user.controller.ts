@@ -2,7 +2,7 @@ import UserModel from '../models/user.model';
 import bcryptjs from 'bcryptjs';
 import { UserX } from '../users';
 import connectDB from '../db';
-import AdminModel from '../models/doctor.model';
+import { Doctor } from '@/util/types';
 export const getAllUser = async () => {
   await connectDB();
   const users = await UserModel.find({});
@@ -10,7 +10,7 @@ export const getAllUser = async () => {
 };
 export const getUserById = async (id: string) => {
   
-  const user: UserX | null = await UserModel.findById(id).populate('appointments','medicalRecords');
+  const user: UserX | Doctor | null = await UserModel.findById(id).populate('appointments','medicalRecords');
   if (!user) throw new Error('No User Found');
   return user;
 };

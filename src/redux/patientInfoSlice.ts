@@ -1,24 +1,43 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IReport } from '../pages/api/models/report.model';
 import { AppState } from '.';
+import { UserX } from '@/pages/api/users';
+import { Doctor } from '@/util/types';
+
 interface MedicalRecord {
   search: string;
-  records: IReport[];
+  userInfo: UserX | Doctor
 }
 const INITIAL_STATE: MedicalRecord = {
-  records: [],
+  userInfo: {
+      _id: '',
+      fullName: '',
+      userType: '',
+      sex: '',
+      age: 0,
+      email: '',
+      password: '',
+      phone: '',
+      location: '',
+      dob: new Date(),
+      image: '',
+      appointments: [],
+      medicalRecords: [], 
+      hospital: ''
+  },
   search: '',
 };
 const recordsSlice = createSlice({
   name: 'records',
   reducers: {
     setMedicalRecords(state, action) {
-      state.records = action.payload;
+      state.userInfo = action.payload;
     },
+    setUserInfo(state,action){
+      state.userInfo = action.payload;
+    }
   },
   initialState: INITIAL_STATE,
 });
-export const { setMedicalRecords } = recordsSlice.actions;
-export const selectMedicalRecords = (state: AppState) =>
-  state.recordsReducer.records;
+export const { setUserInfo } = recordsSlice.actions;
+export const selectUserInfo = (state: AppState) => state.recordsReducer.userInfo;
 export default recordsSlice.reducer;
