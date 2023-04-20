@@ -1,21 +1,21 @@
-import mongoose, { Document, get } from 'mongoose';
-import { IReport } from './report.model';
+import mongoose, { Document, get } from "mongoose";
+import { IReport } from "./report.model";
 interface IAdmin extends mongoose.Document {
-  _id: string
+  _id: string;
   role: boolean;
   fullName: string;
-  sex?: 'MALE'| 'FEMALE'
-  age?: number
-  userType: 'PATIENT' | 'DOCTOR'
+  sex?: "MALE" | "FEMALE";
+  age?: number;
+  userType: "PATIENT" | "DOCTOR";
   email: string;
   password: string;
   staffId?: string;
   phone?: string;
   image?: string;
   location?: string;
-  dob?: Date
+  dob?: Date;
   appointments?: mongoose.Types.ObjectId[];
-  medicalRecords?: string[]
+  medicalRecords?: string[];
 }
 const userSchema = new mongoose.Schema<IAdmin>(
   {
@@ -25,8 +25,8 @@ const userSchema = new mongoose.Schema<IAdmin>(
     },
     userType: {
       type: String,
-      enum: ['PATIENT', 'DOCTOR'],
-      default: 'PATIENT',
+      enum: ["PATIENT", "DOCTOR"],
+      default: "PATIENT",
       required: true,
     },
     email: {
@@ -41,18 +41,18 @@ const userSchema = new mongoose.Schema<IAdmin>(
     phone: {
       type: String,
       unique: true,
-      required: false
+      required: false,
     },
     image: {
       type: String,
-      required: false
+      required: false,
     },
   },
-  { timestamps: true, strict: false },
+  { timestamps: true, strict: false }
 );
 
 userSchema.methods.addMedicalRecord = async function (
-  medicalRecord: IReport,
+  medicalRecord: IReport
 ): Promise<void> {
   this.medicalRecords.push(medicalRecord._id);
   await this.save();
@@ -77,9 +77,9 @@ export interface IUser extends Document {
 let UserModel: mongoose.Model<IAdmin>;
 try {
   // Try to get the existing model from mongoose
-  UserModel = mongoose.model<IAdmin>('Users');
+  UserModel = mongoose.model<IAdmin>("Users");
 } catch {
   // If the model doesn't exist, define it
-  UserModel = mongoose.model<IAdmin>('Users', userSchema);
+  UserModel = mongoose.model<IAdmin>("Users", userSchema);
 }
 export default UserModel;

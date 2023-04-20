@@ -1,29 +1,14 @@
-import '@/styles/globals.css';
-import type { AppProps } from 'next/app';
-import { SessionProvider } from 'next-auth/react';
-import { ReactElement, ReactNode } from 'react';
-import { NextPage } from 'next';
-import MainLayout from '@/util/Layout';
-import DashboardLayout from './dashboard/layout';
+import "@/styles/globals.css";
+import Providers from "@/component/provider";
+import DashboardLayout from "@/layout/dashboard";
+import type { AppProps } from "next/app";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
-
-function App({ Component, pageProps, router }: AppPropsWithLayout) {
-  const isDashboardPage = router.pathname.startsWith('/dashboard');
-  const Layout = isDashboardPage ? DashboardLayout : MainLayout;
-  
+export default function App({ Component, pageProps, router }: AppProps) {
   return (
-    <SessionProvider session={pageProps.session}>
-      <Layout>
+    <Providers>
+      <DashboardLayout userType={"patient"}>
         <Component {...pageProps} />
-      </Layout>
-    </SessionProvider>
+      </DashboardLayout>
+    </Providers>
   );
 }
-
-export default App;

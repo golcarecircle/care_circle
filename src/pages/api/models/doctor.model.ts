@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
-import UserModel from './user.model';
+import mongoose from "mongoose";
+import UserModel from "./user.model";
 export interface IAdmin extends mongoose.Document {
-  _id: string
+  _id: string;
   role: boolean;
   fullName: string;
   email: string;
@@ -32,27 +32,27 @@ const adminSchema = new mongoose.Schema<IAdmin>(
     staffId: {
       type: String,
       unique: true,
-      required: false
+      required: false,
     },
     hospital: {
       type: String,
-      enum: ['KENYATTA HOSPITAL', 'NAIROBI HOSPITAL'],
+      enum: ["KENYATTA HOSPITAL", "NAIROBI HOSPITAL"],
     },
     appointments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Appointment',
+        ref: "Appointment",
       },
     ],
-  },
+  }
   // { minimize: false },
 );
 let AdminModel: mongoose.Model<IAdmin>;
 try {
   // Try to get the existing model from mongoose
-  AdminModel = mongoose.model<IAdmin>('Users');
+  AdminModel = mongoose.model<IAdmin>("Users");
 } catch {
   // If the model doesn't exist, define it
-  AdminModel = UserModel.discriminator('Users', adminSchema);
+  AdminModel = UserModel.discriminator("Users", adminSchema);
 }
 export default AdminModel;

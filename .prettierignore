@@ -1,0 +1,23 @@
+# Ignore artifacts:
+build
+coverage
+
+# dependencies
+/node_modules
+
+# build output
+/.next
+
+# cache and logs
+/.cache
+/.npm
+/.yarn
+/logs
+
+# other generated files
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.next.config.js

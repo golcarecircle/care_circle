@@ -1,5 +1,5 @@
-import { ObjectId } from 'mongodb';
-import mongoose, { Model, Types } from 'mongoose';
+import { ObjectId } from "mongodb";
+import mongoose, { Model, Types } from "mongoose";
 const Schema = mongoose.Schema;
 export interface Appointment extends mongoose.Document {
   patient: Types.ObjectId;
@@ -17,7 +17,7 @@ const appointmentSchema = new Schema<Appointment>(
     patient: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
     },
     date: {
       type: Date,
@@ -34,10 +34,10 @@ const appointmentSchema = new Schema<Appointment>(
       },
     ],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 const AppointmentModel: Model<Appointment> = mongoose.model<Appointment>(
-  'Appointments',
-  appointmentSchema,
+  "Appointments",
+  appointmentSchema
 );
 export default AppointmentModel;

@@ -1,22 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-};
-
-module.exports = {
-  ...nextConfig,
-  async redirects() {
-    return [
-      {
-        source: '/old-page',
-        destination: '/new-page',
-        permanent: true,
-      },
-    ];
-  },
   images: {
-    domains: ['health.gov'],
+    domains: [
+      'images.pexels.com',
+      'randomuser.me',
+    ],
+    
   },
-};
+}
 
-// next.config.js
+module.exports = nextConfig
