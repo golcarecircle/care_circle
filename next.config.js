@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       'images.pexels.com',
       'randomuser.me',
+      'source.unsplash.com',
     ],
     
   },

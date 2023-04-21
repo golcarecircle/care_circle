@@ -1,14 +1,14 @@
-import {MedicalRecord } from "@/types";
+import { MedicalRecord } from "@/types";
 import { FC, useState } from "react";
 import MedicalRecordModal from "./medical_record_modal";
 
 const records: MedicalRecord[] = [
   {
-    id: '12345',
+    id: "12345",
     patientName: "John Smith",
     date: new Date("2022-04-20"),
-    reason: 'Check-up',
-    type: 'online',
+    reason: "Check-up",
+    type: "online",
     clinicalFindings: "Patient has a high fever and cough",
     diagnosticTests: [
       {
@@ -18,9 +18,9 @@ const records: MedicalRecord[] = [
       {
         name: "Chest X-Ray",
         result: "Consistent with pneumonia",
-      }
+      },
     ],
-    hospital:"kenyatta",
+    hospital: "kenyatta",
     medications: [
       {
         name: "Antibiotics",
@@ -28,14 +28,13 @@ const records: MedicalRecord[] = [
         frequency: "twice a day",
         start: new Date("2022-04-21"),
         end: new Date("2022-04-28"),
-      }
+      },
     ],
     doctorName: "Dr. Jane Doe",
     updatedAt: new Date("2022-04-21"),
     updatedBy: "Dr. Jane Doe",
-    status: 'completed'
-    
-  }  
+    status: "completed",
+  },
 ];
 
 interface MedicalHistoryProps {}
@@ -88,25 +87,26 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({}) => {
 
               <td className="py-4">{record.doctorName}</td>
               <td className="py-4">{record.clinicalFindings}</td>
-              <td className="py-4">{record.medications.map((medication, index) => (
-                <div key={index} className="flex text-sm">
-                  <span className="font-semibold">{medication.name}</span>
-                </div>
-              ))}</td>
+              <td className="py-4">
+                {record.medications.map((medication, index) => (
+                  <div key={index} className="flex text-sm">
+                    <span className="font-semibold">{medication.name}</span>
+                  </div>
+                ))}
+              </td>
 
               <td className="py-4 flex justify-center">
-              <span
-  className={`flex justify-center py-1 w-24 font-medium capitalize rounded-full ${
-    record.status === "inProgress"
-      ? "bg-accent-green/20 text-accent-green"
-      : record.status === "completed"
-      ? "bg-accent-purple/20 text-accent-purple"
-      : "bg-accent-orange/20 text-accent-green"
-  }`}
->
-  {record.status}
-</span>
-
+                <span
+                  className={`flex justify-center py-1 w-24 font-medium capitalize rounded-full ${
+                    record.status === "inProgress"
+                      ? "bg-accent-green/20 text-accent-green"
+                      : record.status === "completed"
+                      ? "bg-accent-purple/20 text-accent-purple"
+                      : "bg-accent-orange/20 text-accent-green"
+                  }`}
+                >
+                  {record.status}
+                </span>
               </td>
             </tr>
           ))}

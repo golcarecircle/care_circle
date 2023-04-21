@@ -27,22 +27,22 @@ export type Consultation = {
   status: "inProgess" | "completed";
 };
 
-export type Test ={
+export type Test = {
   name: string;
   result: string;
-}
+};
 
 export type MedicalRecord = {
   id: string;
   patientName: string;
   date: Date;
   reason:
-  | "Check-up"
-  | "Follow-up"
-  | "Pregnancy"
-  | "Emergency"
-  | "vaccination"
-  | "Mental care";
+    | "Check-up"
+    | "Follow-up"
+    | "Pregnancy"
+    | "Emergency"
+    | "vaccination"
+    | "Mental care";
   type: "online" | "physical";
   doctorName: string;
   hospital: string;
@@ -51,8 +51,8 @@ export type MedicalRecord = {
   medications: Medication[];
   updatedBy: string;
   updatedAt: Date;
-  status: 'inProgress' | 'completed';
-}
+  status: "inProgress" | "completed";
+};
 
 export type Medication = {
   name: string;
@@ -60,7 +60,7 @@ export type Medication = {
   frequency: string;
   start: Date;
   end: Date;
-}
+};
 
 export type Medicine = {
   name: string;

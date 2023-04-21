@@ -49,37 +49,40 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
                 <h2 className="font-bold mb-2">CheckUp details :</h2>
                 <div className="h-fit w-full bg-gray-800 rounded-lg">
                   <div className="grid grid-cols-2 gap-x-6 gap-y-1 p-4">
-                      <div className="flex justify-between text-sm">
-                        <p className="font-bold">Date:</p>
-                        <p>
-                          {`${new Date(medicalRecord.date).toLocaleDateString(
-                            "en-US",
-                            {
-                              year: "2-digit",
-                              month: "short",
-                              day: "numeric",
-                              hour: "numeric",
-                              minute: "numeric",
-                            }
-                          )}`}
-                        </p>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <p className="font-bold">Type:</p>
-                        <p>{medicalRecord.type}</p>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <p className="font-bold">Reason:</p>
-                        <p>{medicalRecord.reason}</p>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <p className="font-bold">Doctors:</p>
-                        <p>{medicalRecord.doctorName}</p>
-                      </div>
-                      {medicalRecord.updatedBy && <><div className="flex justify-between text-sm">
-                        <p className="font-bold">Updated by:</p>
-                        <p>{medicalRecord.updatedBy}</p>
-                      </div><div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-sm">
+                      <p className="font-bold">Date:</p>
+                      <p>
+                        {`${new Date(medicalRecord.date).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "2-digit",
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "numeric",
+                          }
+                        )}`}
+                      </p>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <p className="font-bold">Type:</p>
+                      <p>{medicalRecord.type}</p>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <p className="font-bold">Reason:</p>
+                      <p>{medicalRecord.reason}</p>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <p className="font-bold">Doctors:</p>
+                      <p>{medicalRecord.doctorName}</p>
+                    </div>
+                    {medicalRecord.updatedBy && (
+                      <>
+                        <div className="flex justify-between text-sm">
+                          <p className="font-bold">Updated by:</p>
+                          <p>{medicalRecord.updatedBy}</p>
+                        </div>
+                        <div className="flex justify-between text-sm">
                           <p className="font-bold">Updated On:</p>
                           <p>
                             {`${medicalRecord.updatedAt.toLocaleDateString(
@@ -93,12 +96,13 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
                               }
                             )}`}
                           </p>
-                        </div></>}
-                      <div className="flex justify-between text-sm">
-                        <p className="font-bold">Hospital:</p>
-                        <p>{medicalRecord.hospital}</p>
-                      </div>
-                    
+                        </div>
+                      </>
+                    )}
+                    <div className="flex justify-between text-sm">
+                      <p className="font-bold">Hospital:</p>
+                      <p>{medicalRecord.hospital}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -116,14 +120,15 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
                 <h2 className="font-bold mb-2">Diagnostic Tests :</h2>
                 <div className="h-fit w-full bg-gray-800 rounded-lg">
                   <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4">
-                    {
-                      medicalRecord.diagnosticTests.map((test, index) => (
-                        <div key={index} className="flex flex-row justify-between w-full p-2 text-sm">
-                          <p className="font-bold">{test.name}</p>
-                          <p>{test.result}</p>
-                        </div>
-                      ))
-                    }
+                    {medicalRecord.diagnosticTests.map((test, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-row justify-between w-full p-2 text-sm"
+                      >
+                        <p className="font-bold">{test.name}</p>
+                        <p>{test.result}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -145,10 +150,12 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
               <div className="my-4">
                 <h2 className="font-bold mb-2">Medications :</h2>
                 <div className="h-fit w-full bg-gray-800 rounded-lg">
-                <div className="p-4">
-                  {
-                    medicalRecord.medications.map((medication, index) => (
-                      <div key={index} className="grid grid-cols-5 gap-x-6 gap-y-1 text-sm">
+                  <div className="p-4">
+                    {medicalRecord.medications.map((medication, index) => (
+                      <div
+                        key={index}
+                        className="grid grid-cols-5 gap-x-6 gap-y-1 text-sm"
+                      >
                         <>
                           <p className="font-bold">Start date</p>
                           <p className="font-bold">name</p>
@@ -156,7 +163,8 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
                           <p className="font-bold">frequency</p>
                           <p className="font-bold">status</p>
                         </>
-                        <p>{medication.start.toLocaleDateString("en-US", {
+                        <p>
+                          {medication.start.toLocaleDateString("en-US", {
                             year: "2-digit",
                             month: "short",
                             day: "numeric",
@@ -164,11 +172,22 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
                         </p>
                         <p>{medication.name}</p>
                         <p>{medication.dosage}</p>
-                        <p>{medication.fre}</p>
-
+                        <p>{medication.frequency}</p>
+                        <p>
+                          <span
+                            className={`flex justify-center py-1 w-24 font-medium capitalize rounded-full ${
+                              new Date(medication.end) <= new Date()
+                                ? "bg-accent-purple/20 text-accent-purple" // completed
+                                : "bg-accent-green/20 text-accent-green" // in progress
+                            }`}
+                          >
+                            {new Date(medication.end) <= new Date()
+                              ? "completed"
+                              : "in progress"}
+                          </span>
+                        </p>
                       </div>
-                    ))
-                  }
+                    ))}
                   </div>
                 </div>
               </div>
