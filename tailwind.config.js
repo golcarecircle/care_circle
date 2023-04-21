@@ -4,6 +4,10 @@ module.exports = {
   media: false, // or 'media' or 'class'
   theme: {
     extend: {
+      screens: {
+        '2xl': '1440px',
+        '3xl': '1920px',
+      },
       fontFamily : {
         sans : ['Barlow', 'sans-serif']
       },
