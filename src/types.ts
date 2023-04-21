@@ -1,4 +1,4 @@
-import { Appointment } from '@/icons/icons';
+import { Appointment } from "@/icons/icons";
 export type Stat = {
   title: string;
   percentage: string;
@@ -27,11 +27,46 @@ export type Consultation = {
   status: "inProgess" | "completed";
 };
 
+export type Test ={
+  name: string;
+  result: string;
+}
+
+export type MedicalRecord = {
+  id: string;
+  patientName: string;
+  date: Date;
+  reason:
+  | "Check-up"
+  | "Follow-up"
+  | "Pregnancy"
+  | "Emergency"
+  | "vaccination"
+  | "Mental care";
+  type: "online" | "physical";
+  doctorName: string;
+  hospital: string;
+  clinicalFindings: string;
+  diagnosticTests: Test[];
+  medications: Medication[];
+  updatedBy: string;
+  updatedAt: Date;
+  status: 'inProgress' | 'completed';
+}
+
+export type Medication = {
+  name: string;
+  dosage: string;
+  frequency: string;
+  start: Date;
+  end: Date;
+}
+
 export type Medicine = {
   name: string;
   dosage: string;
   frequency: string;
-}
+};
 
 export type Prescription = {
   id?: number;
@@ -39,16 +74,22 @@ export type Prescription = {
   patientId: string;
   prescribedBy: string;
   medicines: Medicine[];
-}
+};
 
 export type Appointment = {
   id?: number;
   date: Date;
-  reason: 'Check-up' | 'Follow-up' | 'Pregnancy' | 'Emergency' | 'vaccination' | 'Mental care';
-  type: 'online' | 'physical';
-  patientId: string;
-  doctorId: string;  
-}
+  reason:
+    | "Check-up"
+    | "Follow-up"
+    | "Pregnancy"
+    | "Emergency"
+    | "vaccination"
+    | "Mental care";
+  type: "online" | "physical";
+  patientId?: string;
+  doctorId: number;
+};
 
 export type Patient = {
   id: string;
@@ -60,7 +101,15 @@ export type Patient = {
   contact: string;
   healthStatus: string[];
   allergies: string[];
-  appointments: Appointment[],
+  appointments: Appointment[];
   medication: string;
-  prescription: Prescription
-}
+  prescription: Prescription;
+};
+
+export type Doctor = {
+  id: number;
+  name: string;
+  profilePic: string;
+  description: string;
+  rating: number;
+};

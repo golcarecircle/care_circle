@@ -647,7 +647,7 @@ const LogoIcon = () => (
         width="71.1773"
         height="71.1773"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
         <feFlood flood-opacity="0" result="BackgroundImageFix" />
         <feColorMatrix
@@ -701,8 +701,8 @@ const LogoIcon = () => (
         y2="13.9324"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#3A8EF6" />
-        <stop offset="1" stop-color="#6F3AFA" />
+        <stop stopColor="#3A8EF6" />
+        <stop offset="1" stopColor="#6F3AFA" />
       </linearGradient>
     </defs>
   </svg>

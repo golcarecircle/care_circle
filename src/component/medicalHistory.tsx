@@ -1,49 +1,52 @@
-import { Consultation } from "@/types";
+import {MedicalRecord } from "@/types";
 import { FC, useState } from "react";
 import MedicalRecordModal from "./medical_record_modal";
 
-const records: Consultation[] = [
+const records: MedicalRecord[] = [
   {
-    date: new Date("2023-04-18"),
-    patientId: "P001",
-    doctorId: "D001",
-    diagnosis: "Hypertension",
-    symptoms: ["headache", "dizziness"],
-    medications: ["Amlodipine", "Hydrochlorothiazide"],
-    tests: ["Blood pressure measurement", "Cholesterol test"],
-    status: "inProgess",
-  },
-  {
-    date: new Date("2023-04-15"),
-    patientId: "P002",
-    doctorId: "D002",
-    diagnosis: "Diabetes",
-    symptoms: ["increased thirst", "frequent urination"],
-    medications: ["Metformin", "Insulin"],
-    tests: ["Blood glucose test", "HbA1c test"],
-    status: "completed",
-  },
-  {
-    date: new Date("2023-04-12"),
-    patientId: "P003",
-    doctorId: "D003",
-    diagnosis: "Asthma",
-    symptoms: ["shortness of breath", "wheezing"],
-    medications: ["Albuterol", "Fluticasone"],
-    tests: ["Lung function test", "Allergy test"],
-    status: "completed",
-  },
+    id: '12345',
+    patientName: "John Smith",
+    date: new Date("2022-04-20"),
+    reason: 'Check-up',
+    type: 'online',
+    clinicalFindings: "Patient has a high fever and cough",
+    diagnosticTests: [
+      {
+        name: "Blood Test",
+        result: "Elevated white blood cell count"
+      },
+      {
+        name: "Chest X-Ray",
+        result: "Consistent with pneumonia"
+      }
+    ],
+    hospital:"kenyatta",
+    medications: [
+      {
+        name: "Antibiotics",
+        dosage: "500mg",
+        frequency: "twice a day",
+        start: new Date("2022-04-21"),
+        end: new Date("2022-04-28"),
+      }
+    ],
+    doctorName: "Dr. Jane Doe",
+    updatedAt: new Date("2022-04-21"),
+    updatedBy: "Dr. Jane Doe",
+    status: 'completed'
+    
+  }  
 ];
 
 interface MedicalHistoryProps {}
 
 const MedicalHistory: FC<MedicalHistoryProps> = ({}) => {
-  const [selectedRecord, setSelectedRecord] = useState<Consultation | null>(
+  const [selectedRecord, setSelectedRecord] = useState<MedicalRecord | null>(
     null
   );
   const [modelOpen, setModalOpen] = useState(false);
 
-  const handleRecordClick = (record: Consultation) => {
+  const handleRecordClick = (record: MedicalRecord) => {
     setSelectedRecord(record);
     setModalOpen(true);
   };
@@ -65,7 +68,7 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({}) => {
           <tr className="text-sm font-semibold text-white">
             <td className="py-4 border-b border-gray-700 text-left">Date</td>
             <td className="py-4 border-b border-gray-700">Doctors Name</td>
-            <td className="py-4 border-b border-gray-700">Diagnosis</td>
+            <td className="py-4 border-b border-gray-700">Clinical findings</td>
             <td className="py-4 border-b border-gray-700">Prescription</td>
             <td className="py-4 border-b border-gray-700 text-center">
               Status
@@ -83,22 +86,27 @@ const MedicalHistory: FC<MedicalHistoryProps> = ({}) => {
                 {formatDate(record.date)}
               </td>
 
-              <td className="py-4">{record.doctorId}</td>
-              <td className="py-4">{record.diagnosis}</td>
-              <td className="py-4">{record.medications}</td>
+              <td className="py-4">{record.doctorName}</td>
+              <td className="py-4">{record.clinicalFindings}</td>
+              <td className="py-4">{record.medications.map((medication, index) => (
+                <div key={index} className="flex text-sm">
+                  <span className="font-semibold">{medication.name}</span>
+                </div>
+              ))}</td>
 
               <td className="py-4 flex justify-center">
-                <span
-                  className={`flex justify-center py-1 w-24 font-medium capitalize rounded-full ${
-                    record.status === "inProgess"
-                      ? "bg-accent-green/20 text-accent-green"
-                      : record.status === "completed"
-                      ? "bg-accent-purple/20 text-accent-purple"
-                      : "bg-accent-orange/20 text-accent-green"
-                  }`}
-                >
-                  {record.status}
-                </span>
+              <span
+  className={`flex justify-center py-1 w-24 font-medium capitalize rounded-full ${
+    record.status === "inProgress"
+      ? "bg-accent-green/20 text-accent-green"
+      : record.status === "completed"
+      ? "bg-accent-purple/20 text-accent-purple"
+      : "bg-accent-orange/20 text-accent-green"
+  }`}
+>
+  {record.status}
+</span>
+
               </td>
             </tr>
           ))}

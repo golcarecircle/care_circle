@@ -2,12 +2,11 @@ import { FC } from "react";
 import Image from "next/image";
 import { Patient } from "@/types";
 
-
 interface ProfileCardProps {
   patient: Patient;
 }
 
-const ProfileCard: FC<ProfileCardProps> = ({patient}) => {
+const ProfileCard: FC<ProfileCardProps> = ({ patient }) => {
   function formatDate(date: Date): string {
     const options = { day: "numeric", month: "short", year: "numeric" };
     return date.toLocaleDateString("en-US", options);
@@ -53,27 +52,30 @@ const ProfileCard: FC<ProfileCardProps> = ({patient}) => {
       </div>
 
       <div className="flex flex-col bg-primary p-4 ml-4 h-full rounded-lg w-4/12">
-        <p className="text-gray-100 text-sm font-semibold mb-1">Blood Type: <span className="text-white">O-</span></p>
-        <p className="text-gray-100 text-sm font-semibold mb-1">Health Status: <span>{patient.healthStatus.map((status) => (
-            <span
-              key={status}
-              className="text-white text-sm"
-            >
-              {status},
-            </span>
-          ))}
-        </span></p>
-        <p className="text-gray-100 text-md font-semibold">Allergies: <span>{patient.allergies.map((allergy) => (
-            <span
-              key={allergy}
-              className="text-white text-sm"
-            >
-              {allergy},
-            </span>
-          ))}
-        </span></p>
+        <p className="text-gray-100 text-sm font-semibold mb-1">
+          Blood Type: <span className="text-white">O-</span>
+        </p>
+        <p className="text-gray-100 text-sm font-semibold mb-1">
+          Health Status:{" "}
+          <span>
+            {patient.healthStatus.map((status) => (
+              <span key={status} className="text-white text-sm">
+                {status},
+              </span>
+            ))}
+          </span>
+        </p>
+        <p className="text-gray-100 text-md font-semibold">
+          Allergies:{" "}
+          <span>
+            {patient.allergies.map((allergy) => (
+              <span key={allergy} className="text-white text-sm">
+                {allergy},
+              </span>
+            ))}
+          </span>
+        </p>
       </div>
-
     </section>
   );
 };
