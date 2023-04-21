@@ -15,7 +15,7 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
   return (
     <div className="fixed z-10 inset-0 overflow-y-auto bg-gray-800 bg-opacity-60 ">
       <div className="flex items-center justify-center min-h-screen py-16">
-        <div className="relative bg-gray-900 p-2 rounded-lg w-2/6 text-gray-100">
+        <div className="relative bg-gray-900 p-2 rounded-lg w-5/12 text-gray-100">
           <div className="py-4 text-left text-gray-50 px-6 h-fit">
             <div className="flex justify-between items-center pb-3">
               <p className="text-lg font-bold">
@@ -47,9 +47,8 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
               {/* CheckUp details */}
               <div className="my-4">
                 <h2 className="font-bold mb-2">CheckUp details :</h2>
-                <div className="h-28 w-full bg-gray-800 rounded-lg">
-                  <div className="flex flex-row justify-between w-full p-2">
-                    <div className="flex flex-col flex-1 p-2">
+                <div className="h-fit w-full bg-gray-800 rounded-lg">
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-1 p-4">
                       <div className="flex justify-between text-sm">
                         <p className="font-bold">Date:</p>
                         <p>
@@ -73,10 +72,8 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
                         <p className="font-bold">Reason:</p>
                         <p>{medicalRecord.reason}</p>
                       </div>
-                    </div>
-                    <div className="flex flex-col flex-1 p-2">
                       <div className="flex justify-between text-sm">
-                        <p className="font-bold">Consulting Doctors :</p>
+                        <p className="font-bold">Doctors:</p>
                         <p>{medicalRecord.doctorName}</p>
                       </div>
                       {medicalRecord.updatedBy && <><div className="flex justify-between text-sm">
@@ -101,15 +98,15 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
                         <p className="font-bold">Hospital:</p>
                         <p>{medicalRecord.hospital}</p>
                       </div>
-                    </div>
+                    
                   </div>
                 </div>
               </div>
               {/* clinical findings */}
               <div className="my-4">
                 <h2 className="font-bold mb-2">Clinical Findings:</h2>
-                <div className="h-28 w-full bg-gray-800 rounded-lg">
-                  <div className="flex flex-row justify-between w-full p-2">
+                <div className="h-fit w-full bg-gray-800 rounded-lg">
+                  <div className="flex flex-row justify-between w-full p-4">
                     <p>{medicalRecord.clinicalFindings};</p>
                   </div>
                 </div>
@@ -117,21 +114,23 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
               {/* clinical diagnostic tests */}
               <div className="my-4">
                 <h2 className="font-bold mb-2">Diagnostic Tests :</h2>
-                <div className="h-28 w-full bg-gray-800 rounded-lg">
-                  {
-                    medicalRecord.diagnosticTests.map((test, index) => (
-                      <div key={index} className="flex flex-row justify-between w-full p-2">
-                        <p className="font-bold">{test.name}</p>
-                        <p>{test.result}</p>
-                      </div>
-                    ))
-                  }
+                <div className="h-fit w-full bg-gray-800 rounded-lg">
+                  <div className="grid grid-cols-1 gap-x-6 gap-y-1 p-4">
+                    {
+                      medicalRecord.diagnosticTests.map((test, index) => (
+                        <div key={index} className="flex flex-row justify-between w-full p-2 text-sm">
+                          <p className="font-bold">{test.name}</p>
+                          <p>{test.result}</p>
+                        </div>
+                      ))
+                    }
+                  </div>
                 </div>
               </div>
               {/* diagnosis tests
               <div className="my-4">
                 <h2 className="font-bold mb-2">Diagnosis :</h2>
-                <div className="h-28 w-full bg-gray-800 rounded-lg">
+                <div className="h-fit w-full bg-gray-800 rounded-lg">
                   {
                     medicalRecord.diagnosis.map((diagnosis, index) => (
                       <div key={index} className="flex flex-row justify-between w-full p-2">
@@ -145,15 +144,32 @@ const MedicalRecordModal: FC<MedicalRecordModalProps> = ({
               {/* Medication */}
               <div className="my-4">
                 <h2 className="font-bold mb-2">Medications :</h2>
-                <div className="h-28 w-full bg-gray-800 rounded-lg">
+                <div className="h-fit w-full bg-gray-800 rounded-lg">
+                <div className="p-4">
                   {
                     medicalRecord.medications.map((medication, index) => (
-                      <div key={index} className="flex flex-row justify-between w-full p-2">
-                        <p className="font-bold">{medication.name}</p>
-                        <p>{medication.start.toLocaleDateString('us-en')}</p>
+                      <div key={index} className="grid grid-cols-5 gap-x-6 gap-y-1 text-sm">
+                        <>
+                          <p className="font-bold">Start date</p>
+                          <p className="font-bold">name</p>
+                          <p className="font-bold">Dosage</p>
+                          <p className="font-bold">frequency</p>
+                          <p className="font-bold">status</p>
+                        </>
+                        <p>{medication.start.toLocaleDateString("en-US", {
+                            year: "2-digit",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </p>
+                        <p>{medication.name}</p>
+                        <p>{medication.dosage}</p>
+                        <p>{medication.fre}</p>
+
                       </div>
                     ))
                   }
+                  </div>
                 </div>
               </div>
             </div>

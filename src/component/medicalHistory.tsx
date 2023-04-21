@@ -13,11 +13,11 @@ const records: MedicalRecord[] = [
     diagnosticTests: [
       {
         name: "Blood Test",
-        result: "Elevated white blood cell count"
+        result: "Elevated white blood cell count",
       },
       {
         name: "Chest X-Ray",
-        result: "Consistent with pneumonia"
+        result: "Consistent with pneumonia",
       }
     ],
     hospital:"kenyatta",
