@@ -71,7 +71,7 @@ const Inbox: FC<InboxProps> = ({}) => {
                   />
                 </div>
               </div>
-              
+
               <div className="chat-message">
                 <div className="flex items-end justify-end">
                   <div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -231,18 +231,18 @@ const Inbox: FC<InboxProps> = ({}) => {
         </div>
 
         <div className="col-span-1 p-4 border-l-2 border-gray-800 ">
-        <div className="flex flex-col">
-          <div className="font-semibold text-xl py-4">Mern Stack Group</div>
-          <img
-            src="https://source.unsplash.com/L2cxSuKWbpo/600x600"
-            className="object-cover rounded-xl h-64"
-            alt=""
-          />
-          <div className="font-semibold py-4">Created 22 Sep 2021</div>
-          <div className="font-light">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
-            perspiciatis!
-          </div>
+          <div className="flex flex-col">
+            <div className="font-semibold text-xl py-4">Mern Stack Group</div>
+            <img
+              src="https://source.unsplash.com/L2cxSuKWbpo/600x600"
+              className="object-cover rounded-xl h-64"
+              alt=""
+            />
+            <div className="font-semibold py-4">Created 22 Sep 2021</div>
+            <div className="font-light">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
+              perspiciatis!
+            </div>
           </div>
         </div>
       </div>
