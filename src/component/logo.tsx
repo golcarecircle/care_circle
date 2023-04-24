@@ -1,24 +1,37 @@
 import { FC } from "react";
-import { LogoIcon, MedIcon } from "../icons/icons";
+import { BiPlusMedical } from "react-icons/bi";
 
-interface LogoProps {
-  size?: "small" | "medium" | "large";
-}
+type LogoProps = {
+  size?: number;
+  color?: string;
+  dcolor?: string;
+  textSize?: string;
+  text?: string;
+};
 
-const Logo: FC<LogoProps> = ({ size = "medium" }) => {
-  let logoClasses =
-    "flex items-center justify-center text-lg font-bold text-gray-900";
-  if (size === "small") {
-    logoClasses += " text-sm";
-  } else if (size === "large") {
-    logoClasses += " text-xl";
-  }
-
+const Logo: FC<LogoProps> = ({
+  size = 6,
+  dcolor = "white",
+  color = "black",
+  text = "white",
+}) => {
+  const textSize = size === 6 ? "lg" : "xg";
   return (
-    <div className={logoClasses}>
-      <LogoIcon />
-      <h1 className="tracking-tight text-white text-xl">CareCircle</h1>
-    </div>
+    <a href="#" className="flex items-center">
+      <div
+        className={`flex justify-center item-center h-${size} bg-primary rounded-full p-1 mr-2`}
+      >
+        <BiPlusMedical
+          className={`h-full w-full fill-${color} bg`}
+          size={`${size}em`}
+        />
+      </div>
+      <span
+        className={`self-center text-${textSize} text-${text} font-semibold whitespace-nowrap dark:text-${dcolor}`}
+      >
+        CareCicle
+      </span>
+    </a>
   );
 };
 

@@ -6,6 +6,7 @@ const nextConfig = {
       'images.pexels.com',
       'randomuser.me',
       'source.unsplash.com',
+      'img.freepik.com',
     ],
     
   },

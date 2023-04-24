@@ -43,4 +43,8 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.login_img_section {
+  background: linear-gradient(rgba(2, 2, 2, 0.266),rgba(0,0,0,.7)),url(https://img.freepik.com/free-photo/africa-humanitarian-aid-doctor-getting-ready-work_23-2149117854.jpg?w=740&t=st=1682337049~exp=1682337649~hmac=1765c42ee7387f9939751f4f2095643c692a3a5802821afbba7c873294a1a87e) center center no-repeat;
+  background-size: cover;
+}
 
