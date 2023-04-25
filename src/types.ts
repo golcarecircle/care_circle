@@ -100,6 +100,7 @@ export type Doctor = {
 };
 
 export type Patient = {
+  prescription: any;
   id: string;
   personalInfo: PersonalInfo;
   medicalInfo: MedicalInfo;

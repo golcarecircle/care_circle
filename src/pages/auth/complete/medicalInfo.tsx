@@ -9,13 +9,14 @@ import {
 } from "@/store/slices/medicalInfoSlice";
 import { useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
-import next from "next";
+import { useRouter } from "next/router";
 
 interface MedicalInfoProps {
   next: () => void;
 }
 
 const MedicalInfo: FC<MedicalInfoProps> = ({ next }) => {
+  const router = useRouter();
   const [inputValue, setInputValue] = useState("");
   const dispatch = useAppDispatch();
   const medicalInfo = useSelector(selectMedicalInfo);
@@ -47,8 +48,7 @@ const MedicalInfo: FC<MedicalInfoProps> = ({ next }) => {
 
   const handleMedicalInfo = () => {
     console.log(medicalInfo);
-
-    next();
+    router.push("/patient")
   };
 
   return (

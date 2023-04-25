@@ -7,7 +7,7 @@ import Stepper from "@/component/stepper";
 
 interface IndexProps {}
 
-const steps = ["Personal Info", "medical Info", "Dependants", "Insurance Info"];
+const steps = ["Personal Info", "medical Info"];
 
 const Index: FC<IndexProps> = ({}) => {
   const [currentStep, setCurrentStep] = useState(1);

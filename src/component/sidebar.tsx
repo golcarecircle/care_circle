@@ -7,6 +7,7 @@ import {
 } from "@/icons/icons";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Logo from "./logo";
 
 type Menu = {
   name: string;
@@ -23,12 +24,7 @@ const getMenus = (userType: string): Menu[] => {
     case "patient":
       return [
         { name: "Dashboard", icon: DashboardIcon, route: "/patient" },
-        {
-          name: "Notifications",
-          icon: NotificationIcon,
-          route: "/patient/notifications",
-        },
-        { name: "Messages", icon: MessageIcon, route: "/patient/messages" },
+        { name: "Messages", icon: MessageIcon, route: "/patient/inbox" },
         { name: "Settings", icon: SettingsIcon, route: "/patient/settings" },
         { name: "Logout", icon: LogoutIcon, route: "/logout" },
       ];
@@ -62,6 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ userType }) => {
 
   return (
     <div className="flex flex-col gap-y-4 items-center py-8 bg-gray-900 w-min">
+      <Logo color="white" />
       <div className="flex flex-col items-start self-start">
         {menus.map((menu) => (
           <div key={menu.name} className="w-full items-start justify-start p-4">

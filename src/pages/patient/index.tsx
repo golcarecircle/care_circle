@@ -74,7 +74,6 @@ const Patient: FC<PatientProps> = ({}) => {
   };
 
   return (
-    <DashboardLayout userType={"patient"}>
       <div className="flex flex-row flex-1 gap-4">
         <div className="flex flex-col w-4/5">
           <ProfileCard patient={patient} />
@@ -156,7 +155,6 @@ const Patient: FC<PatientProps> = ({}) => {
           </div>
         </div>
       </div>
-    </DashboardLayout>
   );
 };
 

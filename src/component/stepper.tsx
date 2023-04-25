@@ -9,7 +9,7 @@ interface StepperProps {
 const Stepper: FC<StepperProps> = ({ currentStep, steps }) => {
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-center">
         {steps.map((step, index) => (
           <div
             key={index}
