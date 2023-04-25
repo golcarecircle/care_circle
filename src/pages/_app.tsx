@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import store  from "@/store";
+import store from "@/store";
 import { useRouter } from "next/router";
 import "@/styles/globals.css";
 import Providers from "@/component/provider";

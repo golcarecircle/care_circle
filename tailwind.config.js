@@ -28,7 +28,8 @@ module.exports = {
           orange: '#FFB572',
           red: '#FF7CA3',
           green: '#50D1AA',
-          purple : '#9290FE'
+          purple : '#9290FE',
+          danger: '#d9534f'
         }
       },
       boxShadow : {

@@ -55,10 +55,7 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ next }) => {
       </div>
 
       <div>
-        <input
-          type="file"
-          onChange={handleAvatarChange}
-        />
+        <input type="file" onChange={handleAvatarChange} />
       </div>
 
       <div className="flex w-full gap-2 mb-2">
@@ -102,8 +99,7 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ next }) => {
         />
       </div>
       <div className="flex items-center px-3 py-2 mb-2 border-2 rounded-2xl">
-
-      <svg
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-5 h-5 text-gray-400"
           fill="none"
@@ -127,39 +123,44 @@ const PersonalInfo: FC<PersonalInfoProps> = ({ next }) => {
           onChange={(e) => dispatch(setEmail(e.target.value))}
         />
       </div>
-    <div className="flex w-full gap-2 mb-2">
-      <div className="flex items-center w-full px-3 py-2 mb-2 border-2 rounded-2xl">
-        <FaCalendar className="w-5 h-5 text-gray-400 fill-current" />
+      <div className="flex w-full gap-2 mb-2">
+        <div className="flex items-center w-full px-3 py-2 mb-2 border-2 rounded-2xl">
+          <FaCalendar className="w-5 h-5 text-gray-400 fill-current" />
 
-        <input
-          id="DOB"
-          className="w-full pl-2 border-none outline-none "
-          type="date"
-          name="dob"
-          placeholder="dob"
-          value={personalInfo.dob}
-          onChange={(e) => dispatch(setDob(e.target.value))}
-        />
-      </div>
-      <div className="flex items-center w-full px-3 py-2 mb-2 border-2 rounded-2xl">
-            <FaGenderless />
-                <select name="gender" id="gender" title="gender" value={personalInfo.gender} onChange={(e) => dispatch(setGender(e.target.value))}>
+          <input
+            id="DOB"
+            className="w-full pl-2 border-none outline-none "
+            type="date"
+            name="dob"
+            placeholder="dob"
+            value={personalInfo.dob}
+            onChange={(e) => dispatch(setDob(e.target.value))}
+          />
+        </div>
+        <div className="flex items-center w-full px-3 py-2 mb-2 border-2 rounded-2xl">
+          <FaGenderless />
+          <select
+            name="gender"
+            id="gender"
+            title="gender"
+            value={personalInfo.gender}
+            onChange={(e) => dispatch(setGender(e.target.value))}
+          >
             <option value="">Select your gende</option>
             <option value="male">male</option>
             <option value="female">female</option>
-        </select>
-      </div>
+          </select>
+        </div>
       </div>
 
       <div className="flex justify-end">
-
-      <button
-        type="submit"
-        className="block px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg"
-      >
-        save
-      </button>
-    </div>
+        <button
+          type="submit"
+          className="block px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg"
+        >
+          save
+        </button>
+      </div>
     </form>
   );
 };

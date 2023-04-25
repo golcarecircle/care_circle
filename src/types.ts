@@ -91,8 +91,6 @@ export type Appointment = {
   doctorId: number;
 };
 
-
-
 export type Doctor = {
   id: number;
   name: string;
@@ -103,27 +101,43 @@ export type Doctor = {
 
 export type Patient = {
   id: string;
-  personalInfo:PersonalInfo;
+  personalInfo: PersonalInfo;
   medicalInfo: MedicalInfo;
   appointments: Appointment[];
-  medication: string;
-  prescription: Prescription;
 };
 
 export type MedicalInfo = {
   allergies: string[];
   conditions: string[];
   disabilities: string[];
-}
-
+};
 
 export type PersonalInfo = {
   firstName: string;
-  lastName:string;
+  lastName: string;
   profilePic: string;
-  birth: Date;
+  birth: string;
   email: string;
   address: string;
   contact: string;
-}
+};
 
+export type DepedantInfo = {
+  firstName: string;
+  lastName: string;
+  birth: string;
+  relationship: string;
+};
+
+export type Depedant = {
+  id: string;
+  personalInfo: DepedantInfo;
+  medicalInfo: MedicalInfo;
+};
+
+export type EmergencyContact = {
+  name: string;
+  relationship: string;
+  phone: string;
+  email: string;
+};
