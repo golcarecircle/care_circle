@@ -91,20 +91,7 @@ export type Appointment = {
   doctorId: number;
 };
 
-export type Patient = {
-  id: string;
-  name: string;
-  profilePic: string;
-  birth: Date;
-  email: string;
-  address: string;
-  contact: string;
-  healthStatus: string[];
-  allergies: string[];
-  appointments: Appointment[];
-  medication: string;
-  prescription: Prescription;
-};
+
 
 export type Doctor = {
   id: number;
@@ -113,3 +100,30 @@ export type Doctor = {
   description: string;
   rating: number;
 };
+
+export type Patient = {
+  id: string;
+  personalInfo:PersonalInfo;
+  medicalInfo: MedicalInfo;
+  appointments: Appointment[];
+  medication: string;
+  prescription: Prescription;
+};
+
+export type MedicalInfo = {
+  allergies: string[];
+  conditions: string[];
+  disabilities: string[];
+}
+
+
+export type PersonalInfo = {
+  firstName: string;
+  lastName:string;
+  profilePic: string;
+  birth: Date;
+  email: string;
+  address: string;
+  contact: string;
+}
+

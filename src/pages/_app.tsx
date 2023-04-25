@@ -1,3 +1,5 @@
+import { Provider } from "react-redux";
+import store  from "@/store";
 import { useRouter } from "next/router";
 import "@/styles/globals.css";
 import Providers from "@/component/provider";
@@ -11,14 +13,16 @@ export default function App({ Component, pageProps }: AppProps) {
     router.pathname.startsWith("/doctor");
 
   return (
-    <Providers>
-      {isPatientOrDoctorRoute ? (
-        <DashboardLayout userType={router.pathname.split("/")[1]}>
+    <Provider store={store}>
+      <Providers>
+        {isPatientOrDoctorRoute ? (
+          <DashboardLayout userType={router.pathname.split("/")[1]}>
+            <Component {...pageProps} />
+          </DashboardLayout>
+        ) : (
           <Component {...pageProps} />
-        </DashboardLayout>
-      ) : (
-        <Component {...pageProps} />
-      )}
-    </Providers>
+        )}
+      </Providers>
+    </Provider>
   );
 }
