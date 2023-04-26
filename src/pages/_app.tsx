@@ -1,27 +1,28 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
-import { SessionProvider } from 'next-auth/react';
-import Layoutcomponent from '@/components/layout/Layout.component';
-import { ReactElement, ReactNode } from 'react';
-import { NextPage } from 'next';
-import { wrapper } from '@/redux';
-import { HealthTipsProvider } from '@/context/healthTips.context';
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
-function App({ Component, pageProps }: AppPropsWithLayout) {
-  return (
-    <SessionProvider session={pageProps.session}>
-      <HealthTipsProvider>
-          <Layoutcomponent>
-            <Component {...pageProps} />
-          </Layoutcomponent>
-      </HealthTipsProvider>
-    </SessionProvider>
-  )
-}
+import { Provider } from "react-redux";
+import store from "@/store";
+import { useRouter } from "next/router";
+import "@/styles/globals.css";
+import Providers from "@/component/provider";
+import DashboardLayout from "@/layout/dashboard";
+import type { AppProps } from "next/app";
 
-export default wrapper.withRedux(App);
+export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const isPatientOrDoctorRoute =
+    router.pathname.startsWith("/patient") ||
+    router.pathname.startsWith("/doctor");
+
+  return (
+    <Provider store={store}>
+      <Providers>
+        {isPatientOrDoctorRoute ? (
+          <DashboardLayout userType={router.pathname.split("/")[1]}>
+            <Component {...pageProps} />
+          </DashboardLayout>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </Providers>
+    </Provider>
+  );
+}

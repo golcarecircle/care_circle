@@ -1,39 +1,59 @@
+import mongoose from "mongoose";
 import UserModel from "./user.model";
 import mongoose, { Schema, Types } from "mongoose";
 export interface IAdmin extends mongoose.Document {
-    role: boolean;
-    staffId: string;
-    hospital: Types.ObjectId;
-    appointments: mongoose.Types.ObjectId[];
+  _id: string;
+  role: boolean;
+  fullName: string;
+  email: string;
+  password: string;
+  staffId: string;
+  phone: string;
+  image: string;
+  hospital: Types.ObjectId;
+  appointments: mongoose.Types.ObjectId[];
 }
-const AdminSchema = new mongoose.Schema<IAdmin>({
-    role: {
-        type: Boolean,
-        required:true
+const adminSchema = new mongoose.Schema<IAdmin>(
+  {
+    fullName: {
+      type: String,
     },
-    staffId:{
-        type: String,
-        required: true,
-        unique: true
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    role: {
+      type: Boolean,
+    },
+    staffId: {
+      type: String,
+      unique: true,
+      required: false,
     },
     hospital: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'Hospitals'
+      type: String,
+      enum: ["KENYATTA HOSPITAL", "NAIROBI HOSPITAL"],
     },
-    appointments: [{
+    appointments: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Appointment'
-    }]
-},{minimize: false})
-AdminSchema.set('toJSON', {
-    transform: (doc, ret, options) => {
-      delete ret.age;
-      delete ret.location;
-      delete ret.dob;
-      delete ret.medicalRecords;
-      return ret;
-    }
-});
-const AdminModel = UserModel.discriminator('Admin', AdminSchema)
+        ref: "Appointment",
+      },
+    ],
+  }
+  // { minimize: false },
+);
+let AdminModel: mongoose.Model<IAdmin>;
+try {
+  // Try to get the existing model from mongoose
+  AdminModel = mongoose.model<IAdmin>("Users");
+} catch {
+  // If the model doesn't exist, define it
+  AdminModel = UserModel.discriminator("Users", adminSchema);
+}
 export default AdminModel;
