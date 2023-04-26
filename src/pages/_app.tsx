@@ -5,7 +5,7 @@ import "@/styles/globals.css";
 import Providers from "@/component/provider";
 import DashboardLayout from "@/layout/dashboard";
 import type { AppProps } from "next/app";
-
+import { HealthTipsProvider } from "@/context/healthTips.context";
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const isPatientOrDoctorRoute =
@@ -17,10 +17,14 @@ export default function App({ Component, pageProps }: AppProps) {
       <Providers>
         {isPatientOrDoctorRoute ? (
           <DashboardLayout userType={router.pathname.split("/")[1]}>
-            <Component {...pageProps} />
+            <HealthTipsProvider>
+              <Component {...pageProps} />
+            </HealthTipsProvider>
           </DashboardLayout>
         ) : (
-          <Component {...pageProps} />
+          <HealthTipsProvider>
+            <Component {...pageProps} />
+          </HealthTipsProvider>
         )}
       </Providers>
     </Provider>
