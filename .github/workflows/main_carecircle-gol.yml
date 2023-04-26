@@ -1,6 +1,6 @@
 name: Deploy to Azure
-on:
-  push:
+on: 
+  workflow_dispatch:
     branches:
       - main
 env:

@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import UserModel from "./user.model";
+import mongoose, { Schema, Types } from "mongoose";
 export interface IAdmin extends mongoose.Document {
   _id: string;
   role: boolean;
@@ -9,7 +10,7 @@ export interface IAdmin extends mongoose.Document {
   staffId: string;
   phone: string;
   image: string;
-  hospital: string;
+  hospital: Types.ObjectId;
   appointments: mongoose.Types.ObjectId[];
 }
 const adminSchema = new mongoose.Schema<IAdmin>(
