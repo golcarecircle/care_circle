@@ -1,7 +1,6 @@
 import MedicalHistory from "@/component/medicalHistory";
 import ProfileCard from "@/component/profile_card";
 import ScheduleModal from "@/component/schedule_modal";
-import DashboardLayout from "@/layout/dashboard";
 import { Patient } from "@/types";
 import { FC, useState } from "react";
 
@@ -17,29 +16,7 @@ const patient: Patient = {
   allergies: ["penicillin", "aspirin"],
   medication: "none",
   healthStatus: ["asthma", "amemia"],
-  appointments: [
-    // {
-    //   date: new Date('2023-05-01T10:00:00'),
-    //   reason: 'Check-up',
-    //   type: 'physical',
-    //   patientId: 'PAT001',
-    //   doctorId: 'DOC001'
-    // },
-    // {
-    //   date: new Date('2023-05-15T15:30:00'),
-    //   reason: 'Follow-up',
-    //   type: 'online',
-    //   patientId: 'PAT002',
-    //   doctorId: 'DOC002'
-    // },
-    // {
-    //   date: new Date('2023-06-20T14:00:00'),
-    //   reason: 'Emergency',
-    //   type: 'physical',
-    //   patientId: 'PAT004',
-    //   doctorId: 'DOC004'
-    // }
-  ],
+  appointments: [],
   prescription: {
     id: undefined,
     date: new Date("1998-04-30"),
